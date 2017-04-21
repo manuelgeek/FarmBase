@@ -1,5 +1,4 @@
-
-				      <?php
+<?php
 
  error_reporting( ~E_NOTICE ); // avoid notice
 session_start();
@@ -256,7 +255,7 @@ if($admin_home->is_logged_in() ) {
 					              		 	echo $minutes; ?>mins ago</h4>
 					                
 								</div>
-								<div class="col-md-5 col-sm-5 card hidden-xs">
+								<div class="col-md-5 col-sm-5 card ">
 			            			<div class="col-md-12" style="padding:2px;" >
 			            				<h3 class="h4"> Posted By</h3>
 			            			</div>

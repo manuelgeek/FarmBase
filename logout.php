@@ -5,12 +5,12 @@ $farmer = new FARMER();
 
 if(!$farmer->is_logged_in())
 {
-	$farmer->redirect('index.php');
+	$farmer->redirect('index');
 }
 
 if($farmer->is_logged_in()!="")
 {
 	$farmer->logout();	
-	$farmer->redirect('index.php');
+	$farmer->redirect('index');
 }
 ?>

@@ -328,5 +328,43 @@ class FARMER
 		}
 	}
 
+	public function farmer_read_message($unread,$messg)
+	{
+		try{
+
+			$stmt = $this->conn->prepare("UPDATE sent_messages SET status = :user_pass WHERE 
+									ID=:user_ID ");
+								
+								$stmt->bindparam(":user_pass",$unread);
+								$stmt->bindparam(":user_ID",$messg);
+								
+								$stmt->execute();
+			return $stmt;
+			
+		}
+		catch(PDOException $ex){
+			echo $ex->getMessage();
+		}
+	}
+
+
+	public function consultant_read_message($unread,$messg)
+	{
+		try{
+
+			$stmt = $this->conn->prepare("UPDATE sent_messages_cons SET status = :user_pass WHERE 
+									ID=:user_ID ");
+								
+								$stmt->bindparam(":user_pass",$unread);
+								$stmt->bindparam(":user_ID",$messg);
+								
+								$stmt->execute();
+			return $stmt;
+			
+		}
+		catch(PDOException $ex){
+			echo $ex->getMessage();
+		}
+	}
 	
 }

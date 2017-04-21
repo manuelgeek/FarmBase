@@ -35,8 +35,23 @@ $name = $row['name'];
                     <?php  if ($stmt->rowCount() > 0) {
                              while($note = $stmt->fetch(PDO::FETCH_ASSOC)) {?>
                                 <li>
-                                <a href="#">
-                                    <span class="photo"><img class=" img-circle" alt="avatar" src="img/user.png" height="30px"></span>
+                                <a href="farmer_inbox_view.php?message=<?php echo $note['ID']; ?>">
+                        <?php
+                            $stmt1 = $admin_home->runQuery("SELECT * FROM tbl_consultants WHERE name=:email_id AND photo!=''");
+                            $stmt1->execute(array(":email_id"=>$note['name']));
+                            if ($stmt1->rowCount() > 0) {
+                                $rower = $stmt1->fetch(PDO::FETCH_ASSOC);?>
+                                <span class="photo"><img class=" img-circle" alt="avatar" src="consultants/consult_images/<?php echo $rower['photo']; ?>" height="30px"></span>
+                       <?php     } else {
+                            $stmt1 = $admin_home->runQuery("SELECT * FROM tbl_farmers WHERE name=:email_id AND photo!=''");
+                            $stmt1->execute(array(":email_id"=>$note['name']));
+                            if ($stmt1->rowCount() > 0) {
+                                $rower = $stmt1->fetch(PDO::FETCH_ASSOC);?>
+                                <span class="photo"><img class=" img-circle" alt="avatar" src="farmer_images/<?php echo $rower['photo']; ?>" height="30px"></span>
+                      <?php } else { ?>
+                                <span class="photo"><img class=" img-circle" alt="avatar" src="img/user.png" height="30px"></span>
+                      <?php }
+                        } ?>
                                     <span class="subject">
                                     <span class="from"><?php echo $note['name']; ?></span>
                                     <span class="time"><?php echo $note['timer']; ?></span>
@@ -54,15 +69,15 @@ $name = $row['name'];
                                 </li>
                     <?php } ?>
                                 <li>
-                                    <a href="#">See all messages</a>
+                                    <a href="farmer_inbox">See all messages</a>
                                 </li>
 
                     <?php } else {?>
                                 <li>
-                                    <a href="">No new Messages ...</a>
+                                   <span>No new Messages ...</span>
                                 </li>
                                 <li>
-                                    <a href="#">See all messages</a>
+                                    <a href="farmer_inbox">See all messages</a>
                                 </li>
                     <?php } ?>
                             </ul>
