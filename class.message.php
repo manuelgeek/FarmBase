@@ -71,24 +71,24 @@ class paginate
 	                 
 	                   <span  class="priced btn btn-default btn-xs"> <?php echo $row['phone']; ?></span>&nbsp;&nbsp;&nbsp;
 	                    <span class="itemed h5 " style="font-style: italic;"><?php 
-					                date_default_timezone_set('Africa/Nairobi');
-					                		$timestamp1 = $row['timer'];
-					                		//$today = date("Y-m-d H:i:s");
-					                		$passed1 = time() - strtotime($timestamp1);
-					                		$days1 = floor($passed1 / 86400);
-					                		$passed1 %= 86400;
-					                		$hours1 = floor($passed1 / 3600);
-					                		$passed1 %= 3600;
-					                		$minutes1 = floor($passed1 / 60);
-					                		if ($days1>=1) {
-					                			echo $hours1;    
-					                		?>&nbsp;Days&nbsp;<?php
-					                		}
-					                		if($hours1>=1){
-					                		echo $hours1;    
-					                		?>&nbsp;Hrs&nbsp;<?php
-					                			}
-					              		 	echo $minutes1; ?>mins ago</span>
+					               
+					                  date_default_timezone_set('Africa/Nairobi'); 
+	                    			$timed = $row['timer'];
+
+								   $timestamp = strtotime($timed);	
+								   
+								   $strTime = array("second", "minute", "hour", "day", "month", "year");
+								   $length = array("60","60","24","30","12","10");
+
+								   $currentTime = time();
+								   if($currentTime >= $timestamp) {
+										$diff     = time()- $timestamp;
+										for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+										$diff = $diff / $length[$i];
+										}
+										$diff = round($diff);
+										echo $diff . " " . $strTime[$i] . "(s) ago ";
+								   } ?></span>
 		<?php if($row['status']=='' || $row['status']=='unread'){ ?>
 					  <span class="pull-right text-danger">Unread&nbsp;</span><br> 
 		<?php } ?>

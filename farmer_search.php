@@ -169,7 +169,7 @@ if($admin_home->is_logged_in() ) {
    <?php 
 
     if (isset($_POST['btn-search'])) {
-      $item = mysql_real_escape_string($_POST["search"]);
+      $item = $_POST["search"];
       header("Location: farmer_search.php?search=$item ");
     }
    ?>

@@ -184,7 +184,7 @@ if($admin_home->is_logged_in() ) {
    <?php 
 
     if (isset($_POST['btn-search'])) {
-      $item = mysql_real_escape_string($_POST["search"]);
+      $item = $_POST["search"];
       header("Location: farmer_search.php?search=$item ");
     }
    ?>
@@ -233,24 +233,23 @@ if($admin_home->is_logged_in() ) {
 					                 <span class="phoned"><b><?php echo $message['email']; ?></b>&nbsp;&nbsp;&nbsp;</span>
 					                   <span  class="priced btn btn-success btn-xs"> <?php echo $message['phone']; ?></span>&nbsp;&nbsp;&nbsp;
 					                   <span class="itemed h5 " style="font-style: italic; "><?php 
-					                date_default_timezone_set('Africa/Nairobi');
-					                		$timestamp1 = $message['timer'];
-					                		//$today = date("Y-m-d H:i:s");
-					                		$passed1 = time() - strtotime($timestamp1);
-					                		$days1 = floor($passed1 / 86400);
-					                		$passed1 %= 86400;
-					                		$hours1 = floor($passed1 / 3600);
-					                		$passed1 %= 3600;
-					                		$minutes1 = floor($passed1 / 60);
-					                		if ($days1>=1) {
-					                			echo $hours1;    
-					                		?>&nbsp;Days&nbsp;<?php
-					                		}
-					                		if($hours1>=1){
-					                		echo $hours1;    
-					                		?>&nbsp;Hrs&nbsp;<?php
-					                			}
-					              		 	echo $minutes1; ?>mins ago</span>
+					                 date_default_timezone_set('Africa/Nairobi'); 
+	                    			$timed = $message['timer'];
+
+								   $timestamp = strtotime($timed);	
+								   
+								   $strTime = array("second", "minute", "hour", "day", "month", "year");
+								   $length = array("60","60","24","30","12","10");
+
+								   $currentTime = time();
+								   if($currentTime >= $timestamp) {
+										$diff     = time()- $timestamp;
+										for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+										$diff = $diff / $length[$i];
+										}
+										$diff = round($diff);
+										echo $diff . " " . $strTime[$i] . "(s) ago ";
+								   } ?></span>
 					              <?php if($farmer_home->is_logged_in() OR $admin_home->is_logged_in() )  {
  								?>
 					                <div style="float: right;">

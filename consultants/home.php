@@ -241,4 +241,5 @@ if(isset($_POST['btn-post']))
    
     <script type="text/javascript" src="../js/validation.min.js"></script>
     <script type="text/javascript" src="../js/register.js"></script>
+    <script type="text/javascript" src="../js/notifications.js"> </script>
 </html>

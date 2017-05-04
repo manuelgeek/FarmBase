@@ -24,7 +24,6 @@ if($farmer_home_post->dbConnection())
 	}
 
 	$admin_home = new CONSULTANT();
-	if(!$admin_home->is_logged_in())
 {
 	$admin_home->redirect('index');
 }

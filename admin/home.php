@@ -2,6 +2,7 @@
  error_reporting( ~E_NOTICE ); 
 session_start();
 require_once 'class.admin.php';
+require_once 'admin_settings.php';
 $admin_home = new ADMIN();
 
 if(!$admin_home->is_logged_in())
@@ -55,7 +56,7 @@ include 'register.php';
 	 <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
-			  <span class=""></span>&nbsp; <?php echo $row['email']; ?>&nbsp;<span class="caret"></span></a>
+			  <span class=""></span>&nbsp; <b>ADMIN NO:<?php echo $row['ID']; ?></b> <?php echo $row['email']; ?>&nbsp;<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
               </ul>
@@ -82,35 +83,35 @@ include 'register.php';
                       <div class="col-md-2 col-sm-2 col-md-offset-1 box0">
                         <div class="box1">
                   <span class="li_heart"></span>
-                  <h3>933</h3>
+                  <h3><?php echo $t_users; ?></h3>
                         </div>
-                  <p>933 People liked your page the last 24hs. Whoohoo!</p>
+                  <p><?php echo $t_users; ?> Total Numbers of users registered</p>
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                   <span class="li_cloud"></span>
-                  <h3>+48</h3>
+                  <h3><?php echo $t_consult; ?></h3>
                         </div>
-                  <p>48 New files were added in your cloud storage.</p>
+                  <p><?php echo $t_consult; ?> Extension Officers on board</p>
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                   <span class="li_stack"></span>
-                  <h3>23</h3>
+                  <h3>+<?php echo $t_products; ?></h3>
                         </div>
-                  <p>You have 23 unread messages in your inbox.</p>
+                  <p>You have <?php echo $t_products; ?> Products posted by farmers.</p>
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                   <span class="li_news"></span>
-                  <h3>+10</h3>
+                  <h3>+<?php echo $t_messages; ?></h3>
                         </div>
-                  <p>More than 10 news were added in your reader.</p>
+                  <p>More than <?php echo $t_messages; ?> blog post were added by your officers.</p>
                       </div>
                       <div class="col-md-2 col-sm-2 box0">
                         <div class="box1">
                   <span class="li_data"></span>
-                  <h3>OK!</h3>
+                  <h3>OK</h3>
                         </div>
                   <p>Your server is working perfectly. Relax & enjoy.</p>
                       </div>
@@ -153,17 +154,20 @@ include 'register.php';
                 <div class="col-md-6 col-sm-6 mb">
                           <div class="white-panel pn">
                             <div class="white-header">
-                    <h5>TOP PRODUCT</h5>
+                    <h5>TOP PRODUCT </h5>
                             </div>
                 <div class="row">
                   <div class="col-sm-6 col-xs-6 goleft">
-                    <p><i class="fa fa-heart"></i> 122</p>
+                    <p><i class="fa fa-heart"></i> <?php echo $t_goods; ?></p>
                   </div>
                   <div class="col-sm-6 col-xs-6"></div>
                             </div>
                             <div class="centered">
-                    <img src="assets/img/product.png" width="120">
+                    <img src="../post_images/<?php echo $top_p['photo']; ?>" width="120">
                             </div>
+                            <h6><?php echo $top_p['cartegory']; ?></h6>
+                            <h3>Name: <?php echo $top_p['title']; ?></h3>
+                            <h4>By: <?php echo $top_p['email']; ?></h4>
                           </div>
                         </div><!-- /col-md-4 -->
                         
@@ -173,16 +177,16 @@ include 'register.php';
                 <div class="white-header">
                   <h5>TOP USER</h5>
                 </div>
-                <p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
-                <p><b>Zac Snider</b></p>
+                <p><img src="../farmer_images/<?php echo $top_u['photo']; ?>" class="img-circle" width="80"></p>
+                <p><b><?php echo $top_u['name']; ?></b></p>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="small mt">MEMBER SINCE</p>
-                    <p>2012</p>
+                    <p class="small mt">TOTAL POSTS</p>
+                    <p><?php echo $top_user; ?></p>
                   </div>
                   <div class="col-md-6">
-                    <p class="small mt">TOTAL SPEND</p>
-                    <p>$ 47,60</p>
+                    <p class="small mt">PHONE NO</p>
+                    <p><?php echo $top_u['phone']; ?></p>
                   </div>
                 </div>
               </div>

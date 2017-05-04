@@ -54,7 +54,24 @@ $name = $row['name'];
                         } ?>
                                     <span class="subject">
                                     <span class="from"><?php echo $note['name']; ?></span>
-                                    <span class="time"><?php echo $note['timer']; ?></span>
+                                    <span class="time"><?php 
+                                              date_default_timezone_set('Africa/Nairobi'); 
+                                            $timed = $note['timer'];
+
+                                           $timestamp = strtotime($timed);  
+                                           
+                                           $strTime = array("second", "minute", "hour", "day", "month", "year");
+                                           $length = array("60","60","24","30","12","10");
+
+                                           $currentTime = time();
+                                           if($currentTime >= $timestamp) {
+                                                $diff     = time()- $timestamp;
+                                                for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+                                                $diff = $diff / $length[$i];
+                                                }
+                                                $diff = round($diff);
+                                                echo $diff . " " . $strTime[$i] . "(s) ago ";
+                                           } ?></span>
                                     </span>
                                     <span class="message">
                                         <?php

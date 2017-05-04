@@ -235,24 +235,23 @@ if($admin_home->is_logged_in() ) {
 				                	<h6 class="itemed h6"><?php echo $message['cartegory']; ?></h6>
 					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3>
 					                <h4 class="itemed h4 " style="font-style: italic;"><?php 
-					                date_default_timezone_set('Africa/Nairobi');
-					                		$timestamp = $message['timer'];
-					                		//$today = date("Y-m-d H:i:s");
-					                		$passed = time() - strtotime($timestamp);
-					                		$days = floor($passed / 86400);
-					                		$passed %= 86400;
-					                		$hours = floor($passed / 3600);
-					                		$passed %= 3600;
-					                		$minutes = floor($passed / 60);
-					                		if ($days>=1) {
-					                			echo $hours;    
-					                		?>&nbsp;Days&nbsp;<?php
-					                		}
-					                		if($hours>=1){
-					                		echo $hours;    
-					                		?>&nbsp;Hrs&nbsp;<?php
-					                			}
-					              		 	echo $minutes; ?>mins ago</h4>
+					                  date_default_timezone_set('Africa/Nairobi'); 
+	                    			$timed = $message['timer'];
+
+								   $timestamp = strtotime($timed);	
+								   
+								   $strTime = array("second", "minute", "hour", "day", "month", "year");
+								   $length = array("60","60","24","30","12","10");
+
+								   $currentTime = time();
+								   if($currentTime >= $timestamp) {
+										$diff     = time()- $timestamp;
+										for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+										$diff = $diff / $length[$i];
+										}
+										$diff = round($diff);
+										echo $diff . " " . $strTime[$i] . "(s) ago ";
+								   } ?></h4>
 					                
 								</div>
 								<div class="col-md-5 col-sm-5 card ">
