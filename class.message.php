@@ -42,6 +42,7 @@ class paginate
 
 				 header("Location: blog.php?more");
 			}  -->
+			  <a href="farmer_inbox_view.php?message=<?php echo $row['ID']; ?>">
 
               <div class="col-md-10 col-md-offset-1  col-xs-12 col-sm-12 row-eq-height  card"  id="mauni">
                 <div class="col-md-3 col-sm-3 col-xs-3">
@@ -64,7 +65,7 @@ class paginate
                	</div>
                 	
                 <div class="col-md-9 col-sm-9 col-xs-9">
-	                <a href="farmer_inbox_view.php?message=<?php echo $row['ID']; ?>"><h4 class="itemed h4"><b><?php echo $row['name']; ?></b></h4></a>
+	            <span>    <a href="farmer_inbox_view.php?message=<?php echo $row['ID']; ?>"><h4 class="itemed h4"><b><?php echo $row['name']; ?></b></h4></a>
 	               
 					  <a href="farmer_inbox_view.php?message=<?php echo $row['ID']; ?>"><button class="btn btn-success btn-xs" type="submit" name="btn-more" value="<?php echo $row['ID']; ?>">View message...</button></a>&nbsp;&nbsp;
 					 </span>
@@ -94,7 +95,7 @@ class paginate
 		<?php } ?>
                </div><br>
             </div> 
-               
+               </a>
                 <?php
 			}
 		}

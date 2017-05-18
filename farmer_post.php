@@ -90,64 +90,19 @@ if(isset($_POST['btn-post']))
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<link href="#SSS" rel="stylesheet" type="text/css" />
+		<!-- <link href="#SSS" rel="stylesheet" type="text/css" /> -->
 		 <link href="css/style.css" rel="stylesheet">
 		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		 <link href="font/css/font-awesome.css" rel="stylesheet" />
+		  <link href="css/parsley.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-		 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet"></link>
+		 <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet"></link> -->
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
 	
 		<title>Farmer | Post</title>
 		<script type="text/javascript" src="js/jquery2.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/notifications.js"> </script>
-			<script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places">
-    </script>
-		<script type="text/javascript" src="js/jquery.placepicker.js"></script>
-		<script>
-
-      $(document).ready(function() {
-
-        // Basic usage
-        $(".placepicker").placepicker();
-
-        // Advanced usage
-        $("#advanced-placepicker").each(function() {
-          var target = this;
-          var $collapse = $(this).parents('.form-group').next('.collapse');
-          var $map = $collapse.find('.another-map-class');
-
-          var placepicker = $(this).placepicker({
-            map: $map.get(0),
-            placeChanged: function(place) {
-              console.log("place changed: ", place.formatted_address, this.getLocation());
-            }
-          }).data('placepicker');
-        });
-
-      }); // END document.ready
-
-    </script>
-
-    <style>
-
-      .placepicker-map {
-        width: 100%;
-        height: 300px;
-      }
-
-      .another-map-class {
-        width: 100%;
-        height: 300px;
-      }
-
-      .pac-container {
-        border-radius: 5px;
-      }
-
-    </style>
+		<script type="text/javascript" src="js/notifications.js"> </script>	
      <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 	</head>
 	<body>
@@ -232,7 +187,8 @@ if($farmer_post->is_logged_in()) {
 						echo $msg1;
 				}
 			?>	
-				<form method="post" enctype="multipart/form-data">
+				<form method="post" enctype="multipart/form-data" data-parsley-validate >
+	
 							<div class="form-group col-md-8 col-md-offset-2">
 								<label class="login-field-icon fui-user" for="login-name">Name of product </label>
 							  <input type="text" name="title" class="form-control login-field" value="" placeholder="Name of Product" id="login-name" required />
@@ -249,7 +205,7 @@ if($farmer_post->is_logged_in()) {
 							</div>
 							<div class="form-group col-md-8 col-md-offset-2">
 								 <label class="login-field-icon fui-lock" for="login-pass">Price</label>
-							  <input type="text" name="price" class="form-control login-field" value="" placeholder="Price" id="login-pass" required />
+							  <input type="text" name="price" class="form-control login-field" value="" placeholder="Price" id="login-pass" required data-parsley-type="integer" 	 />
 							 
 							</div>
 							<div class="form-group col-md-8 col-md-offset-2">
@@ -271,12 +227,13 @@ if($farmer_post->is_logged_in()) {
 							        
 							    </select>
 							</div>
-							<div class="" data-example>
-							<div class="form-group col-md-8 col-md-offset-2">
-								 <label class="login-field-icon fui-lock " for="login-pass">Location</label>
-							  <input type="text" name="location" class="form-control login-field placepicker" value="" placeholder="Location" id="login-pass" required />
-							 
-							</div>
+							<div class="form-group" data-example >
+								<div class=" col-md-8 col-md-offset-2">
+									 <label class="login-field-icon fui-lock " for="login-pass">Location</label>
+								  <input type="text" name="location" class="placepicker form-control" value="" placeholder="Enter a Location" id="login-pass" required />
+								 
+								</div>
+
 							</div>
 							<div class="form-group col-md-8 col-md-offset-2">
 
@@ -309,6 +266,7 @@ if($farmer_post->is_logged_in()) {
 		<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
 		<script type="text/javascript" src="js/validation.min.js"></script>
 		<script type="text/javascript" src="js/register.js"></script>
+		<script src="js/parsley.min.js"></script>
 
 		
 </html>

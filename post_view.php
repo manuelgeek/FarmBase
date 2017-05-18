@@ -226,11 +226,12 @@ if($admin_home->is_logged_in() ) {
 			                <div class="col-md-9 col-sm-9 ">
 			                	<div class="col-md-8">	
 				                	<h6 class="itemed h6"><?php echo $message['cartegory']; ?></h6>
-					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3>
+					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3> <span class="itemed h5"> <?php echo date('M j, Y',strtotime($message['timer'])); ?></span>
 					                <span class="text"><?php echo $message['description']; ?></span>
 					                <h4 class="itemed h4"><b><?php echo $message['price']; ?></b>(negotiable)</h4>
 					                <h5 class="itemed h5">Location: <b><?php echo $message['location']; ?></b></h5>
 					                 <span class="phoned"><b><?php echo $message['email']; ?></b>&nbsp;&nbsp;&nbsp;</span>
+
 					                   <span  class="priced btn btn-success btn-xs"> <?php echo $message['phone']; ?></span>&nbsp;&nbsp;&nbsp;
 					                   <span class="itemed h5 " style="font-style: italic; "><?php 
 					                 date_default_timezone_set('Africa/Nairobi'); 

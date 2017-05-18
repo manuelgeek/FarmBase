@@ -82,7 +82,7 @@ class paginate
                
                 
 		             <div class="col-md-8">
-		                <span class="phoned"><p> <?php echo $row['price']; ?></p></span>
+		                <span class="phoned"><p> Kshs.<?php echo $row['price']; ?></p></span>
 				        <span class="phoned"><p> <?php echo $row['email']; ?>,&nbsp; <?php echo $row['location']; ?></p></span>
 				     </div>
 				     <div class="col-md-4 ">

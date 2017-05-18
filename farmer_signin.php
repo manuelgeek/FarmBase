@@ -6,7 +6,7 @@
 
 	if($farmer_signin->is_logged_in()!="")
 {
-	$farmer_signin->redirect('index.php');
+	$farmer_signin->redirect('index');
 }
 
 
@@ -22,7 +22,7 @@ if(isset($_POST['btn-login']))
 	
 	if($farmer_login->login($email,$upass))
 	{
-		$farmer_login->redirect('index.php');
+		$farmer_login->redirect('index');
 	}
 }
 ?>

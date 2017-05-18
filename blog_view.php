@@ -233,7 +233,7 @@ if($admin_home->is_logged_in() ) {
 			                <div class="col-md-7 col-sm-7 ">
 			                	<div class="col-md-7">	
 				                	<h6 class="itemed h6"><?php echo $message['cartegory']; ?></h6>
-					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3>
+					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3><span class="itemed h5"> <?php echo date('M j, Y',strtotime($message['timer'])); ?></span>
 					                <h4 class="itemed h4 " style="font-style: italic;"><?php 
 					                  date_default_timezone_set('Africa/Nairobi'); 
 	                    			$timed = $message['timer'];

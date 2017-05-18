@@ -94,6 +94,7 @@ if(isset($_POST['btn-post']))
 		 <link href="../css/style.css" rel="stylesheet">
 		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		 <link href="../font/css/font-awesome.css" rel="stylesheet" />
+     <link href="css/parsley.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
      <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
@@ -175,7 +176,7 @@ if(isset($_POST['btn-post']))
             echo $msg1;
         }
       ?>  
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" data-parsley-validate >
               <div class="form-group col-md-8 col-md-offset-2">
                 <label class="login-field-icon fui-user" for="login-name">Name of Post </label>
                 <input type="text" name="title" class="form-control login-field" value="" placeholder="Name of Post" id="login-name" required />
@@ -242,4 +243,5 @@ if(isset($_POST['btn-post']))
     <script type="text/javascript" src="../js/validation.min.js"></script>
     <script type="text/javascript" src="../js/register.js"></script>
     <script type="text/javascript" src="../js/notifications.js"> </script>
+    <script src="../js/parsley.min.js"></script>
 </html>
