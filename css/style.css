@@ -1,5 +1,5 @@
 html , body{
-	font-family: segoe UI!important;
+	font-family: 'Roboto', sans-serif !important;
 }
 .card {
   /*adding: 16px;*/
@@ -12,7 +12,7 @@ html , body{
 }
 
 .navbar-fixed-top, #navbar, #myTab {
-  background-color:#00796b !important;
+  background-color:#4CAF50 !important;
   border: none!important;
 }
 .dropdown-menu{
@@ -25,14 +25,14 @@ html , body{
   background-color:#00796b !important;
 }
 ul .active a{
-  background-color:#2D757E !important;
+  background-color:rgba(0,0,0,0.3) !important;
   border: none!important;
 }
 .nav li a, .navbar-brand{
   color: #fff!important;
 }
 .nav li a:hover{
-  background-color:#2D757E !important;
+  background-color:rgba(0,0,0,0.3) !important;
   border: none!important;
 }
 .nav-tabs li a:hover{

@@ -282,5 +282,4 @@ if($admin_home->is_logged_in() ) {
 		<script type="text/javascript" src="js/validation.min.js"></script>
 		<script type="text/javascript" src="js/register.js"></script>
 		 <script type="text/javascript" src="js/script.js"></script>
-		
 </html>

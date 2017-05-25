@@ -6,7 +6,7 @@
 
 	if($farmer_signin->is_logged_in()!="")
 {
-	$farmer_signin->redirect('index');
+	$farmer_signin->redirect('index.php');
 }
 
 
@@ -22,7 +22,7 @@ if(isset($_POST['btn-login']))
 	
 	if($farmer_login->login($email,$upass))
 	{
-		$farmer_login->redirect('index');
+		$farmer_login->redirect('index.php');
 	}
 }
 ?>
@@ -37,7 +37,10 @@ if(isset($_POST['btn-login']))
 		 <link href="font/css/font-awesome.css" rel="stylesheet" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
-	
+		<link rel="stylesheet" href="css/materialize/css/materialize.min.css">
+		<?php
+			include 'csslink.php';
+		?>
 		<title>Farmer | Login</title>
 	</head>
 	<body>
@@ -66,7 +69,7 @@ if(isset($_POST['btn-login']))
 							<input type="password" class="form-control" name="password" placeholder="Enter Your Password" required />
 						</div>
 						<div class="col-md-6 col-md-offset-3 form-group">
-							<input type="submit" class="col-md-8 col-md-offset-2 btn btn-primary btn-small" name="btn-login" value="Sign In" />
+							<input type="submit" class="btn btn-primary btn-small green" name="btn-login" value="Sign In" />
 						</div>
 						<div class="col-md-6 col-md-offset-3 form-group">
 							<div><input type="checkbox" class="" name="rem"   />Remember Me</div><br>

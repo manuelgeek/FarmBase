@@ -40,8 +40,8 @@ class paginate
 				
 
               <div class="col-md-3  col-xs-12 col-sm-3 row-eq-height "  id="mauni">
-              	<div class="card col-md-12" id="item-single">
-               <div class="img-solo">
+              	<div class="card panel panel-default" id="item-single">
+               <div class="img-solo panel-heading">
                 <?php if ( $row['photo']==''){
                  echo ""; 
                 }else {?>
@@ -53,7 +53,7 @@ class paginate
                 ?>
                
                </div>
-               <div class="post-solo">
+               <div class="post-solo panel-body">
 	                <p class="itemed"><?php echo $row['cartegory']; ?></p>
 	               <ul style="list-style: none; display: inline-flex; padding: 0px;"> 
 	               <li><h4 class="itemed h4"><b><?php echo $row['title']; ?></b></h4> </li>&nbsp; 
@@ -81,17 +81,24 @@ class paginate
 					            </ul>
                
                 
-		             <div class="col-md-8">
-		                <span class="phoned"><p> Kshs.<?php echo $row['price']; ?></p></span>
+		             <div class="col-md-12">
+		                <span class="phoned"><p> <?php echo $row['price']; ?></p></span>
 				        <span class="phoned"><p> <?php echo $row['email']; ?>,&nbsp; <?php echo $row['location']; ?></p></span>
 				     </div>
-				     <div class="col-md-4 ">
-				           <span  class="priced btn btn-success btn-xs"> <?php echo $row['phone']; ?></span><br>
-				           <a href="post_view.php?var=<?php echo $row['ID']; ?>">
-				           <button class="btn btn-success btn-xs" name="btn-more" value="<?php echo $row['ID']; ?>" type="submit">View Product</button>
+                 </div>
+                 <div class="panel-footer">
+                 	<div class="btn-group-vertical" role="group" aria-label="Basic example" style="width:100%">
+					  <a type="button" class="btn small btn-secondary btn-sm green" style="font-size: 10px;width:100%"><?php echo $row['phone']; ?></a>
+					  <a href="post_view.php?var=<?php echo $row['ID']; ?>" class="btn small btn-secondary btn-sm green" style="font-size: 10px;width:100%">View Product</a>
+					</div>
+                 	<!-- <div class="btn-group">
+                 		<a  class="priced btn btn-success btn-xs"> <?php echo $row['phone']; ?></a>
+				           <a href="post_view.php?var=<?php echo $row['ID']; ?>" class="btn btn-success btn-xs">
+				           <button  name="btn-more" value="<?php echo $row['ID']; ?>" type="submit">View Product</button>
 				          </a>
-		           	 </div>
-                </div>
+                 	</div> -->
+	           	 </div>
+
             </div>
           </div> 
                

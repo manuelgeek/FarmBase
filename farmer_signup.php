@@ -20,7 +20,8 @@ if($farmer_signup->is_logged_in())
 		 <link href="font/css/font-awesome.css" rel="stylesheet" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
-	
+		<link rel="stylesheet" href="css/materialize/css/materialize.min.css">
+		
 		<title>Farmer | Register</title>
 	</head>
 	<body>
@@ -62,11 +63,19 @@ if($farmer_signup->is_logged_in())
 							<span class="help-block " id="error"></span>
 						</div>
 						<div class="col-md-8 col-md-offset-2 form-group">
-							<div><input type="checkbox" class="" name="check" required  /> &nbsp; &nbsp;Agree to Terms and Conditions</div>
+							<div>
+							<!-- <label for="t&c">
+								<input type="checkbox" class="" name="check" required  id="t&c"/> &nbsp; &nbsp;Agree to Terms and Conditions -->
+								<p>
+							      <input type="checkbox" class="" name="check" required  id="t&c"/>
+							      <label for="t&c">Agree to Terms and Condition</label>
+							    </p>		
+							</div>
+							</label>
 							<span class="help-block " id="error"></span>
 						</div>
 						<div class="col-md-8 col-md-offset-2 form-group">
-							<input type="submit" class="col-md-8 col-md-offset-2 btn btn-primary btn-small" id="btn-login" name="btn-register" value="Sign Up" onclick="return validate();" />
+							<input type="submit" class="green btn btn-primary btn-small" id="btn-login" name="btn-register" value="Sign Up" onclick="return validate();" />
 						</div>
 						<div class="col-md-8 col-md-offset-2 form-group">
 							

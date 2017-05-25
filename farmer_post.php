@@ -199,7 +199,7 @@ if($farmer_post->is_logged_in()) {
 							<label class="login-field-icon fui-lock" for="login-pass">Description.... </label>
 							  <textarea type="text" name="description" class="form-control login-field" value="" placeholder="Description..." id="login-pass" required > </textarea>
 							  	<script>
-				                    CKEDITOR.replace( 'description' );
+	                    CKEDITOR.replace( 'description' );
 				                </script>
 							  
 							</div>
