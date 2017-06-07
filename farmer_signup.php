@@ -68,7 +68,7 @@ if($farmer_signup->is_logged_in())
 								<input type="checkbox" class="" name="check" required  id="t&c"/> &nbsp; &nbsp;Agree to Terms and Conditions -->
 								<p>
 							      <input type="checkbox" class="" name="check" required  id="t&c"/>
-							      <label for="t&c">Agree to Terms and Condition</label>
+							      <label for="t&c">Agree to <a href="" data-toggle="modal" data-target="#messageForm" > Terms and Condition</a></label>
 							    </p>		
 							</div>
 							</label>
@@ -87,14 +87,12 @@ if($farmer_signup->is_logged_in())
 			</div>
 		</div>
 	</section>
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-				</div>
-				
-			</div>
-		</footer>
+	<?php 
+
+	//footer
+	include 'footer.php';
+
+	?>
 	</body>
 	<script type="text/javascript" src="js/jquery2.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -102,6 +100,35 @@ if($farmer_signup->is_logged_in())
 		<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
 		<script type="text/javascript" src="js/validation.min.js"></script>
 		<script type="text/javascript" src="js/register.js"></script>
+
+		<!--................message Pop Up..............-->
+							
+							 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" class="modal fade" id="messageForm">
+								<div class="modal-dialog">
+									<div class="modal-content1">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+											<h4 class="modal-title">FarmBase Terms and Conditions</h4>
+										</div>
+										<div class="modal-body">
+											<article>
+												<p>
+													IMPORTANCE OF COUNSELLING Counselling is important to the institution and even to the modern world. The importance are: <br>
+													1. Counselling in marriage and relationship help people to bond better and make relationship smoother with fewer conflicts.<br>
+													 2. Helps one improve the skills of decision making, reduce tension, maintain a better self-esteem and confidence and feel more positive and optimistic towards life.<br>
+													  3. Many old age people who are often treated as commodity in the houses feed nee
+												</p>
+											</article>
+										</div>
+										<div class="modal-footer">
+										<p class="nnot">Create an <a href="farmer_signin">account </a> with us today</p>
+										</div>
+									</div>
+								</div>
+							</div>	
+											
+										
+					   <!--........................end of message pop up..............-->
 		
 
 

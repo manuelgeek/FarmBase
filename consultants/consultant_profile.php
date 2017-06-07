@@ -5,7 +5,8 @@ $consultant_profile = new CONSULTANT();
 
 if(!$consultant_profile->is_logged_in())
 {
-	$consultant_profile->redirect('index');
+	$_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+  $consultant_profile->redirect('index');
 }
 
 $stmt = $consultant_profile->runQuery("SELECT * FROM tbl_consultants WHERE email=:email_id");
@@ -94,6 +95,7 @@ if(isset($_POST['btn-edit']))
 		 <link href="../css/style.css" rel="stylesheet">
 		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		 <link href="../font/css/font-awesome.css" rel="stylesheet" />
+     <link rel="stylesheet" href="../css/materialize/css/materialize.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
 	

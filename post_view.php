@@ -4,10 +4,11 @@ require_once 'class.farmer.php';
 require_once 'consultants/class.consultant.php';
 $farmer_home = new FARMER();
 
-// if(!$farmer_home->is_logged_in())
-// {
-// 	$farmer_home->redirect('index.php');
-// }
+if(!$farmer_home->is_logged_in())
+{
+	$_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+}
+
 if($farmer_home->is_logged_in()){
 $stmt = $farmer_home->runQuery("SELECT * FROM tbl_farmers WHERE email=:email_id");
 $stmt->execute(array(":email_id"=>$_SESSION['farmerSession']));
@@ -60,6 +61,7 @@ if($farmer_home_post->dbConnection())
 		 <link href="font/css/font-awesome.css" rel="stylesheet" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
+		 <link rel="stylesheet" href="css/material-inputs.css">
 	
 		<title>Farmer | Home</title>
 		<script type="text/javascript" src="js/jquery2.js"></script>
@@ -73,14 +75,31 @@ if($farmer_home_post->dbConnection())
 					data:'id='+id,
 					success:function(msg){
 						if(msg == 'fav'){
-							 $(element).closest('.faver').removeClass('btn-default').addClass('btn-primary');
+							 $('.faver').removeClass('btn-default').addClass('btn-warning');
 						}else{
-							 $(element).closest('.faver').removeClass('btn-primary').addClass('btn-default');
+							 $('.faver').removeClass('btn-warning').addClass('btn-default');
 						}
 					}
 				});
 				return false;
 			}
+		</script>
+		<!-- favourite colouring -->
+		<?php
+			$stmt = $farmer_home->runQuery("SELECT * FROM product_fav WHERE postID=:email_id AND email='$row[email]'");
+			$stmt->execute(array(":email_id"=>$message['ID']));
+			$list = $stmt->fetch(PDO::FETCH_ASSOC);
+		?>
+ 		<script type="text/javascript">
+ 			$('document').ready(function()	{ 	
+				if (<?php echo $list['favourite']; ?>==1) {
+										
+				 $('.faver').removeClass('btn-default').addClass('btn-warning');
+				}else{
+				 $('.faver').removeClass('btn-warning').addClass('btn-default');
+				}
+					});
+		
 		</script>
 		
 <style type="text/css">
@@ -188,29 +207,34 @@ if($admin_home->is_logged_in() ) {
       header("Location: farmer_search.php?search=$item ");
     }
    ?>
-    <div class="navbar navbar-inverse">
+    <div class="row">
+   		<div class="container">
+   			<div class="navbar navbar-inverse __search-margin-top">
         
-          <div class="nav navbar-nav navbar-right">
-               <form action="" method="post">
-               		<ul>
-                    	<li>  <input type="text" class="form-control " name="search" placeholder="Search Products " id="country_id" onkeyup="autocomplet()"/></li>
-                     
-                     	<li> <button name="btn-search" class=" btn btn-success" type="submit"><i class="fa fa-search"></i></button></li>
-                    </ul>
-                </form>
-            </div>
-          
+               		<form action="" method="post">
+						<div class="__form-button">
+	                     	<button name="btn-search" class=" btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+						</div>
+						<div class="__form-input">
+	                    	 <input type="text" class="form-control" name="search" placeholder="Search Products " id="country_id" onkeyup="autocomplet()"/> 
+						</div>
+              		</form>          
     </div>
+   		</div>
+   </div>
     <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 pull-right "  id="sercher-view">
-    	<ul id="country_list_id" class="card dropdown-menu "></ul>
+    	<ul id="country_list_id" class="card dropdown-menu " style="display: hidden;
+margin-right: 142px;
+width: 232px;"></ul>
     </div>
 
       
-    <section>
+    <section style="padding-top:50px">
     <div class="container" id="panel_post">
     	 
 					<div class="container">
-				        <div class='col-md-12 row-eq-height card' id="post-view">
+						<!--Nimetoa class:card hapa -->
+				        <div class='col-md-12 row-eq-height' id="post-view">
 							
 								<div class="col-md-3 col-sm-3">
 					                <?php if ( $message['photo']==''){
@@ -224,8 +248,8 @@ if($admin_home->is_logged_in() ) {
 					                ?>
 			               		</div>
 			                <div class="col-md-9 col-sm-9 ">
-			                	<div class="col-md-8">	
-				                	<h6 class="itemed h6"><?php echo $message['cartegory']; ?></h6>
+			                	<div class="col-md-8">
+			                		<span class="label __label"><?php echo $message['cartegory']; ?></span>
 					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3> <span class="itemed h5"> <?php echo date('M j, Y',strtotime($message['timer'])); ?></span>
 					                <span class="text"><?php echo $message['description']; ?></span>
 					                <h4 class="itemed h4"><b><?php echo $message['price']; ?></b>(negotiable)</h4>
@@ -251,44 +275,58 @@ if($admin_home->is_logged_in() ) {
 										$diff = round($diff);
 										echo $diff . " " . $strTime[$i] . "(s) ago ";
 								   } ?></span>
+								    <div style="float: right;">
 					              <?php if($farmer_home->is_logged_in() OR $admin_home->is_logged_in() )  {
- 								?>
-					                <div style="float: right;">
+					              	?>
 									  <button name="btn-fav"  class="btn faver btn-default btn-sm" onClick="cwRating(<?php echo $message['ID']; ?>)" type="submit" value="<?php echo $message['ID']; ?>"><span>Favourite&nbsp;</span><i class="glyphicon glyphicon-star"></i>&nbsp;&nbsp;</button>
-									 <!--  <span>Comment&nbsp;</span><i class="glyphicon glyphicon-comment"></i><br> -->
-									</div>
 							<?php } ?>
+				<?php
+				$stmt2 = $farmer_home->runQuery("SELECT * FROM product_fav WHERE favourite = '1' AND postID = '$message[ID]' ");
+				$stmt2->execute();
+				$blog_likes = $stmt2->rowCount();
+				?>						
+											<span class="itemed h4 " style="font-style: italic;"><?php echo $blog_likes; ?>Likes</span>
+									</div>
 								</div>
-								<div class="col-md-4 card">
-			            			<div class="col-md-12" style="padding:2px;" >
-			            				<h3 class="h4 ad-posted">Add Posted By</h3>
-			            			</div>
-			            			<div class="col-md-12 " style="padding:2px;">
-				            			<div class="col-md-3 col-sm-4 col-xs-4">
-				            			<?php
-				            			 if ($message['userpic']=="") {
-												$pic2 = "<img class='img-circle ' src='img/user.png' style='' padding:0px; height=50px width=50px />";
-											}
-				            			 ?>
-				            				<?php
-													if(isset($pic2)){
-														echo $pic2;
-													} else { ?>									
+								<!-- Card class inaudhi -->
+								<div class="col-md-4">
+									<div class="__card __author-card clearfix panel panel-success">
+										<div class="panel-heading">
+											<h3 class="h4 ad-posted">Add Posted By</h3>
+										</div>
+										<div class="panel-body">
+											<div class="col-md-12 " style="padding:2px;">
+											<!-- col-* classes nimezitoa -->
+					            			<?php
+					            			 if ($message['userpic']=="") {
+													$pic2 = "<img class='img-circle ' src='img/user.png' style='' padding:0px; height=50px width=50px />";
+												}
+					            			 ?>
+					            				<?php
+														if(isset($pic2)){
+															echo $pic2;
+														} else { ?>									
+														<div class="__image" style="background:url(farmer_images/<?php echo $message['userpic'];?>);background-size:cover;">
+															
+														</div>
+													<?php
+													}?>
 
-													<img class="img-circle " src="farmer_images/<?php echo $message['userpic']; ?>"  style=" padding:0px;"  height=50px />
-												<?php
-												}?>
-				            			</div>
-				            			<div class="col-md-9 col-sm-8 col-xs-8">
-				            				<p class="phoned"><?php echo $message['email']; ?></p>
-				            				<p class="itemed "> <?php echo $message['location']; ?></p>
-					                		 
-				            			</div>
-			            			</div>
-			            			<div class="col-md-12" style="padding:2px;">
-				            			<button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit" >Call</button><br>
-				            			<button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit" data-toggle="modal" data-target="#messageForm"  >Message</button>
-			            			</div>
+					            			<div class="__author-details">
+					            				<p class="phoned"><?php echo $message['email']; ?></p>
+					            				<p class="itemed "> <?php echo $message['location']; ?></p>
+						                		 
+					            			</div>
+			            					</div>
+										</div>
+			            				<div class="panel-footer">
+			    
+				            			<button style="width: 100%;" class="btn btn-sm btn-success __item-cta" type="submit" >Call</button><br>
+				            			<button style="width: 100%;" class="btn btn-sm btn-success __item-cta" type="submit" data-toggle="modal" data-target="#messageForm"  >Message</button>
+
+			            				</div>
+								</div>
+			            			
 			            		</div>
 			               </div><br>
 			            </div>
@@ -298,7 +336,7 @@ if($admin_home->is_logged_in() ) {
 						<div class="col-md-12  row-eq-height">
 						<h2 class="h2 also-like">You may also like;</h2>
 		                   <?php 
-		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = '$message[cartegory]' ORDER BY id DESC";       
+		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = '$message[cartegory]' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       
 		                    $records_per_page=8;
 		                    $newquery = $paginate->paging($query,$records_per_page);
 		                    $paginate->dataview($newquery);
@@ -315,14 +353,12 @@ if($admin_home->is_logged_in() ) {
             </div>
            
     </section>
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-				</div>
-				
-			</div>
-		</footer>
+	<?php 
+
+	//footer
+	include 'footer.php';
+
+	?>
 	</body>
 
 

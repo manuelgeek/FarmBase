@@ -44,7 +44,7 @@ class paginate
 			}  -->
 			 <a href="consultant_inbox_view.php?message=<?php echo $row['ID']; ?>">
 
-              <div class="col-md-10 col-md-offset-1  col-xs-12 col-sm-12 row-eq-height  card"  id="mauni">
+              <div class="col-md-10 col-md-offset-1  col-xs-12 col-sm-12 row-eq-height __card"  id="mauni">
                 <div class="col-md-3 col-sm-3 col-xs-3">
                <?php
                             $stmt1 = $this->conn->prepare("SELECT * FROM tbl_consultants WHERE name=:email_id AND photo!=''");

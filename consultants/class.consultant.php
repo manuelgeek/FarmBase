@@ -54,6 +54,7 @@ class CONSULTANT
 				
 					if($userRow['pass']==md5($upass))
 					{
+						unset($_SESSION['farmerSession']);
 						$_SESSION['consultantSession'] = $userRow['email'];
 						return true;
 					}
@@ -96,33 +97,37 @@ class CONSULTANT
 		$_SESSION['consultantSession'] = false;
 	}
 	
-	public function delete_post($title)
+	public function delete_post($pid)
 	{
-		try {
-			// $stmt = $this->conn->prepare("SELECT * FROM tbl_farmers WHERE email='$_SESSION[farmerSession]'");
-			// //$stmt->execute(array(":email_id"=>$email));
-			// $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-			// $userRow['email']
+		try
+		{							
+		$stmt = $this->conn->prepare("SELECT photo FROM message_posts WHERE ID=:pid");
+		$stmt->execute(array(':pid'=>$pid));
+		$imgRow=$stmt->fetch(PDO::FETCH_ASSOC);
+		unlink("message_images/".$imgRow['photo']); 
 
-			$stmt = $this->conn->query("SELECT photo FROM farmer_posts WHERE email='$_SESSION[consultantSession]' AND name='$title'");
-		//	$stmt_select->execute(array('$_SESSION[userSession]'=>$_GET['upload_pic']));
-			$imgRow=$stmt->fetch_array();
-			unlink("post_images/".$imgRow['photo']); 
-			$stmt = $this->conn->query("DELETE FROM farmer_posts WHERE email='$_SESSION[consultantSession]' AND name='$title'");
+
+		$stmt = $this->conn->prepare("DELETE FROM message_posts WHERE ID=:pid");
+		$stmt->execute(array(':pid'=>$pid));
+          
+		
 			
-		} catch (PDOException $ex) {
+			$stmt->execute();	
+			return $stmt;
+		}
+		catch(PDOException $ex)
+		{
 			echo $ex->getMessage();
 		}
-
 	}
 
-	public function consultant_post($title,$phone,$description,$cartegory,$userpic,$email,$piced)
+	public function consultant_post($title,$phone,$description,$cartegory,$userpic,$userName,$piced,$userEmail)
 	{
 		try {
 			 
 
-					$stmt = $this->conn->prepare("INSERT INTO message_posts(title,phone,description,cartegory,photo,email,userpic) 
-			                                             VALUES(:user_name, :user_phone, :user_desc, :user_cart, :user_pic, :user_email, :user_img)");
+					$stmt = $this->conn->prepare("INSERT INTO message_posts(title,phone,description,cartegory,photo,userName,userpic,userEmail) 
+			                                             VALUES(:user_name, :user_phone, :user_desc, :user_cart, :user_pic, :user_email, :user_img, :userEmail)");
 					$stmt->bindparam(":user_name",$title);
 					
 					$stmt->bindparam(":user_phone",$phone);
@@ -130,8 +135,9 @@ class CONSULTANT
 					$stmt->bindparam(":user_desc",$description);
 					$stmt->bindparam(":user_cart",$cartegory);
 					$stmt->bindparam(":user_pic",$userpic);
-					$stmt->bindparam(":user_email",$email);
+					$stmt->bindparam(":user_email",$userName);
 					$stmt->bindparam(":user_img",$piced);
+					$stmt->bindparam(":userEmail",$userEmail);
 					
 					$stmt->execute();	
 					return $stmt;
@@ -139,6 +145,32 @@ class CONSULTANT
 		} catch (PDOException $ex) {
 			echo $ex->getMessage();
 		}
+	}
+
+	public function consultant_edit_post($id,$title,$phone,$description,$cartegory,$userName,$piced,$userEmail)
+	{
+		try {
+			$stmt = $this->conn->prepare("UPDATE message_posts SET title = :title, phone = :user_phone
+										 , description = :descript , cartegory = :cart , userName = :uname ,
+										 userpic = :user_pic ,userEmail = :user_e WHERE ID = :id ");
+			$stmt->bindparam(":title",$title);
+			
+			$stmt->bindparam(":user_phone",$phone);
+			
+			$stmt->bindparam(":descript",$description);
+			$stmt->bindparam(":cart",$cartegory);
+			$stmt->bindparam(":uname",$userName);
+			$stmt->bindparam(":user_pic",$piced);
+			$stmt->bindparam(":user_e",$userEmail);
+			$stmt->bindparam(":id",$id);
+
+			$stmt->execute();	
+			return $stmt;
+				
+		} catch (PDOException $ex) {
+			echo $ex->getMessage();
+		}
+
 	}
 
 	public function consultant_profile($name,$phone,$userpic)

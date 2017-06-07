@@ -6,7 +6,8 @@ $farmer_home = new FARMER();
 
 if(!$farmer_home->is_logged_in())
 {
-	$farmer_home->redirect('index');
+	$_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+	$farmer_home->redirect('farmer_signin');
 }
 if($farmer_home->is_logged_in()){
 $stmt = $farmer_home->runQuery("SELECT * FROM tbl_farmers WHERE email=:email_id");
@@ -141,7 +142,7 @@ if($farmer_home->is_logged_in()) {
 
     <section>
     <div class="container" id="panel_post">
-    		<div class='col-md-12 row-eq-height card'>
+    		<div class='col-md-12 row-eq-height'>
     			<div class="col-md-3 col-sm-3">
 					                <?php 
 					        $stmt1 = $admin_home->runQuery("SELECT * FROM farmer_posts WHERE ID=:email_id");
@@ -182,40 +183,42 @@ if($farmer_home->is_logged_in()) {
 					               <span class="text">Message:<br><?php echo $message['message']; ?></span>
 					                
 								</div>
-								<div class="col-md-4 col-sm-4 card ">
-			            			<div class="col-md-12" style="padding:2px;" >
-			            				<h3 class="h4"> Sent By</h3>
+								<div class="col-md-4 col-sm-4 ">
+			            			<div class="__card __author-card panel panel-default panel-success">
+			            				<div class="panel-heading" style="" >
+			            				<h3 class="h4 ad-posted"> Sent By</h3>
 			            			</div>
-			            			<div class="col-md-12 " style="padding:2px;">
+			            			<div class="panel-body " style="padding:2px;">
 				            			<div class="col-md-3">
 				     	 <?php
                             $stmt1 = $admin_home->runQuery("SELECT * FROM tbl_consultants WHERE name=:email_id AND photo!=''");
                             $stmt1->execute(array(":email_id"=>$message['name']));
                             if ($stmt1->rowCount() > 0) {
                                 $rower = $stmt1->fetch(PDO::FETCH_ASSOC);?>
-                                <span class="photo"><img class=" img-circle" alt="avatar" src="consultants/consult_images/<?php echo $rower['photo']; ?>" height="60px"></span>
+                                <div class="__image" style="background: url(consultants/consult_images/<?php echo $rower['photo']; ?>);background-size:cover;"></div>
                        <?php     } else {
                             $stmt1 = $admin_home->runQuery("SELECT * FROM tbl_farmers WHERE name=:email_id AND photo!=''");
                             $stmt1->execute(array(":email_id"=>$message['name']));
                             if ($stmt1->rowCount() > 0) {
                                 $rower = $stmt1->fetch(PDO::FETCH_ASSOC);?>
-                                <span class="photo"><img class=" img-circle" alt="avatar" src="farmer_images/<?php echo $rower['photo']; ?>" height="60px"></span>
+                                <div class="__image" style="background: url(farmer_images/<?php echo $rower['photo']; ?>);background-size:cover;"></div>
                       <?php } else { ?>
-                                <span class="photo"><img class=" img-circle" alt="avatar" src="img/user.png" height="60px"></span>
+                                <div class="__image" style="background: url(img/user.png);background-size:cover;"></div>
                       <?php }
                         } ?>
 				            			</div>
-				            			<div class="col-md-9">
-				            			<h3 class="phoned h3"><?php echo $message['name']; ?></h3>
+				            			<div class="__author-details">
+				            				<p class="phoned"><?php echo $message['name']; ?></p>
 				            				<p class="phoned"><?php echo $message['senderEmail']; ?></p>
 				            				<p class="phoned"><?php echo $message['phone']; ?></p>
 				            				
 					                		 
 				            			</div>
 			            			</div>
-			            			<div class="col-md-12" style="padding:2px;">
-				            			<button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit">Call</button><br>
+			            			<div class="panel-footer" style="">
+				            			<button style="width:100%;" class="btn btn-sm btn-success __item-cta" type="submit">Call</button><br>
 				            			<!-- <button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit" data-toggle="modal" data-target="#messageForm">Message</button> -->
+			            			</div>
 			            			</div>
 			            		</div>
 			               </div>
@@ -223,8 +226,9 @@ if($farmer_home->is_logged_in()) {
 			        </div>
                
                 <!-- Tab panes -->
-                <h3 class="h3">More Messages</h3>
-						
+						<div class="col-md-10 col-md-offset-1 col-xs-12 col-sm-12">
+                			<h3 class="h3">More Messages</h3>
+						</div>
 		                   <?php 
 		                   $namer = $row['name'];
 		                    $query = "SELECT * FROM sent_messages WHERE receiverEmail='$namer' ORDER BY ID DESC";       
@@ -244,14 +248,12 @@ if($farmer_home->is_logged_in()) {
         </div>
     </section>
     <div class="clearfix"></div>
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-				</div>
-				
-			</div>
-		</footer>
+	<?php 
+
+	//footer
+	include 'footer.php';
+
+	?>
 	</body>
 	 <script type="text/javascript" src="js/jquery2.js"></script>
     <script type="text/javascript" src="js/notifications.js"> </script>

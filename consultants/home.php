@@ -5,7 +5,8 @@ $consult_home = new CONSULTANT();
 
 if(!$consult_home->is_logged_in())
 {
-	$consult_home->redirect('index.php');
+	$_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+  $consult_home->redirect('index');
 }
 
 $stmt = $consult_home->runQuery("SELECT * FROM tbl_consultants WHERE email=:email_id");
@@ -27,8 +28,9 @@ if(isset($_POST['btn-post']))
   $cartegory = trim($_POST['cartegory']);
   
   $phone = $row['phone'];
-  $email = $row['name'];
+  $userName = $row['name'];
   $piced = $row['photo'];
+  $userEmail = $row['email'];
 
   $imgFile = $_FILES['photo']['name'];
     $tmp_dir = $_FILES['photo']['tmp_name'];
@@ -68,7 +70,7 @@ if(isset($_POST['btn-post']))
           // if no error occured, continue ....
         if(!isset($errMSG))
         {
-            if($consult_home->consultant_post($title,$phone,$description,$cartegory,$userpic,$email,$piced))
+            if($consult_home->consultant_post($title,$phone,$description,$cartegory,$userpic,$userName,$piced,$userEmail))
           {
             $msg1 = "<div class='alert alert-success col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2' data-dismiss='alert'>
                   <button class='close ' data-dismiss='alert'>&times;</button>
@@ -98,6 +100,7 @@ if(isset($_POST['btn-post']))
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
      <script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+      <link rel="stylesheet" href="../css/material-inputs.css">
 	
 		<title>Consultant | Post</title>
 	</head>
@@ -161,7 +164,8 @@ if(isset($_POST['btn-post']))
             <div class=" col-md-8 col-md-offset-2 row text-center">
               <h2 class="title ">Consultant  Posts</h2>
               <p> Make your posts messages below</p>
-            </div>
+                <span class="h3">Manage your previous posts<a href="manage_posts" class="btn btn-default">Here...</a></span>
+            </div><br>
             <div class="col-md-8 col-sm-10 col-md-offset-2 col-sm-offset-1">
               <?php
           if(isset($errMSG)){
@@ -225,15 +229,12 @@ if(isset($_POST['btn-post']))
       </div>
       
     </section>
- <footer>
-      <div class="col-md-12">
-        <div class="col-md-6 col-md-offset-3 text-center">
-          <p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-        </div>
-        
-      </div>
-    </footer>
+ <?php 
 
+  //footer
+  include '../footer.php';
+
+  ?>
 
 </section>
 </body>

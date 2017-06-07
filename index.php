@@ -57,6 +57,11 @@ if($farmer_home_post->dbConnection())
 		 <link href="font/css/font-awesome.css" rel="stylesheet" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
+		 <link rel="stylesheet" href="css/material-inputs.css">
+
+		 <script async src="site.js"></script>
+
+		 <link rel="manifest" href="manifest.json" />
 	
 		<title>Farmer | Home</title>
   
@@ -151,28 +156,72 @@ if($admin_home->is_logged_in() ) {
 
       </div>
     </nav>
-     <div class="clearfix"></div>
+    <div class="clearfix"></div>
    	 <div class="col-lg-2 col-lg-offset-5">
-		<br style="margin: 15px;">
+		<br style="margin: 20px;">
 	</div>
+
+	</section>
+	<header>
+		  <section class="page1_header">
+			<div class="container">
+			  <div class="row">
+			 <div class="col-md-7 col-sm-7" id="info1">
+				  <h2>Promote <br> Respect <br> Unite</h2>
+				 <p> Reaching Out To Touch Hearts </p>
+			</div>
+			<div class="col-md-5 col-sm-5" id="tab-panels">
+				<div class="col-md-6 col-sm-6 col-xs-6" id="we">
+				  <a href="services" class="banner "><div class="maxheight">
+					<div class="fa fa-globe"><br></div><p>Trainings</p></div>
+				  </a>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6" id="wa">
+				  <a href="services" class="banner "><div class="maxheight">
+					<div class="fa fa-lightbulb-o"><br></div><p>Weaver iLab</p></div>
+				  </a>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6" id="wa">
+				  <a href="services" class="banner "><div class="maxheight1">
+					<div class="fa fa-gears"><br></div><p>New Services</p></div>
+				  </a>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-6" id="we">
+				  <a href="services" class="banner "><div class="maxheight1">
+					<div class="fa fa-briefcase"><br></div><p>Property Management</p></div>
+				  </a>
+				</div>
+			</div>
+				
+			  </div>
+			</div>
+		  </section>
+		
+     
 	<div class="clearfix"></div>
-   
-    <div class="navbar navbar-inverse">
+   <div class="row">
+   		<div class="container">
+   			<div class="navbar navbar-inverse __search-margin-top">
         
-          <div class="nav navbar-nav navbar-right">
-               <form action="" method="post">
-               		<ul>
-                    	<li>  <input type="text" class="form-control " name="search" placeholder="Search Products " id="country_id" onkeyup="autocomplet()"/></li>
-                     
-                     	<li> <button name="btn-search" class=" btn btn-success" type="submit"><i class="fa fa-search"></i></button></li>
-                    </ul>
-                </form>
-            </div>
-          
+               		<form action="" method="post">
+						<div class="__form-button">
+	                     	<button name="btn-search" class=" btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+						</div>
+						<div class="__form-input">
+	                    	 <input type="text" class="form-control" name="search" placeholder="Search Products " id="country_id" onkeyup="autocomplet()"  /> 
+						</div>
+              		</form>          
     </div>
+   		</div>
+   </div>
+  </header>
+  <div class="clearfix"></div>
     <div class="col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2 pull-right "  id="sercher-view">
-    	<ul id="country_list_id" class="card dropdown-menu "></ul>
+    	<ul id="country_list_id" class="card dropdown-menu " style="display:hidden;
+			margin-right: 142px;
+			width: 232px;"></ul>
     </div>
+
 
     <section>
     <div class="container" id="panel_post">
@@ -188,7 +237,7 @@ if($admin_home->is_logged_in() ) {
 				  	 
 						
 		                   <?php 
-		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Feeds, Suppliments and Seeds' ORDER BY id DESC";       
+		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Feeds, Suppliments and Seeds' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       
 		                    $records_per_page=12;
 		                    $newquery = $paginate->paging($query,$records_per_page);
 		                    $paginate->dataview($newquery);
@@ -208,7 +257,7 @@ if($admin_home->is_logged_in() ) {
 							
 						
 		                   <?php 
-		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Farm Machinery and Tools' ORDER BY id DESC";       
+		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Farm Machinery and Tools' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       
 		                    $records_per_page=12;
 		                    $newquery = $paginate->paging($query,$records_per_page);
 		                    $paginate->dataview($newquery);
@@ -226,7 +275,7 @@ if($admin_home->is_logged_in() ) {
                   <div class="tab-pane fade " id="livestock">
 						
 		                   <?php 
-		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Livestock, Poultry and Fish' ORDER BY id DESC";       
+		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Livestock, Poultry and Fish' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       
 		                    $records_per_page=12;
 		                    $newquery = $paginate->paging($query,$records_per_page);
 		                    $paginate->dataview($newquery);
@@ -244,7 +293,7 @@ if($admin_home->is_logged_in() ) {
                   <div class="tab-pane fade " id="farm">
 						
 		                   <?php 
-		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Farm Produce' ORDER BY id DESC";       
+		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Farm Produce' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       
 		                    $records_per_page=12;
 		                    $newquery = $paginate->paging($query,$records_per_page);
 		                    $paginate->dataview($newquery);
@@ -265,14 +314,74 @@ if($admin_home->is_logged_in() ) {
         </div>
     </section>
     <div class="clearfix"></div>
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
+    <section>
+			<div class="container" id="register">
+			  <div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-3">
+				  <div class="single-footer-widget">
+					<div class="section-heading">
+					<h2 class="reg">Register</h2>
+					<div class="line"></div>
+				  </div>           
+				  <p>In order for the Presbyterian Weavers members to access their accounts for the first time,follow the following simple steps. In case of any problems,our support team is always ready to help</p>
+				  </div>
 				</div>
-				
+				<div class="col-lg-3 col-md-3 col-sm-3">
+				  <div class="single-footer-widget">
+					<div class="section-heading">
+					<h2 class="reg">How to Register</h2>
+					<div class="line"></div>
+				  </div>
+				  <ul class="footer-service">
+					<li><span class="fa fa-check"></span>Enter your Email address</li>
+					<li><span class="fa fa-check"></span>Enter default password</li>
+					<li><span class="fa fa-check"></span>Go to Change Password</li>
+					<li><span class="fa fa-check"></span>Choose Passsword of Your Choice </li>
+					<li><span class="fa fa-check"></span>Enjoy our services</li>
+				  </ul>
+				  </div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3">
+				  <div class="single-footer-widget">
+					<div class="section-heading">
+					<h2 class="reg">Tags</h2>
+					<div class="line"></div>
+				  </div>
+					<ul class="tag-nav">
+					  <li><a href="home">Our Page</a></li>
+					  <li><a href="php/logpage">Login</a></li>
+					  <li><a href="about">Presbyterian Weavers</a></li>
+					  <li><a href="https://www.facebook.com/Presbyterian-Weavers-of-Kenya-377229792412452/?hc_ref=SEARCH" target="_blank">FB</a></li>
+					  <li><a href="presb.pdf" target="_blank">Constitution </a></li>
+					  <li><a href="contact">Contact</a></li>
+					</ul>
+				  </div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-3">
+				  <div class="single-footer-widget">
+					<div class="section-heading">
+					<h2 class="reg">Contact Info</h2>
+					<div class="line"></div>
+				  </div>
+				  <p>For more information about us you can get in touch with us.</p>
+				  <address class="contact-info">
+					<p><span class="fa fa-home"></span>P.O Box, 
+					30784-00100, Nairobi</p>
+					<p><span class="fa fa-phone"></span>+254728700535,+254716590576</p>
+					<p><span class="fa fa-envelope"></span>info@presbyterianweavers.co.ke</p>
+				  </address>
+				  </div>
+				</div>
+			 </div>
 			</div>
-		</footer>
+		</section>	
+    <div class="clearfix"></div>
+	<?php 
+
+	//footer
+	include 'footer.php';
+
+	?>
 	</body>
 	 <script type="text/javascript" src="js/jquery2.js"></script>
     <script type="text/javascript" src="js/notifications.js"> </script>

@@ -26,6 +26,7 @@ include 'register.php';
 		 <link href="../css/style.css" rel="stylesheet">
 		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		 <link href="../font/css/font-awesome.css" rel="stylesheet" />
+     <link rel="stylesheet" href="../css/materialize/css/materialize.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
 	
@@ -47,7 +48,8 @@ include 'register.php';
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="home">Home</a></li>
-            <li><a href="view_posts">Viw Products</a></li>
+            <li><a href="view_posts">View Products</a></li>
+             <li><a href="view_blog">View Blog Posts</a></li>
             <!-- <li><a href="#">Tenders</a></li> -->
             <!-- <li><a href="about">About Farmbase</a></li> -->
           </ul>
@@ -69,7 +71,7 @@ include 'register.php';
 
 
     <div class="clearfix"></div>
-   	 <div class="col-lg-2 col-lg-offset-5">
+   	 <div class="col-lg-12 ">
 		<br style="margin: 30px;">
 	</div>
 
@@ -201,6 +203,12 @@ include 'register.php';
   </section>
 
 </section>
+<?php 
+
+  //footer
+  include '../footer.php';
+
+  ?>
 </body>
     <script type="text/javascript" src="../js/jquery2.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>

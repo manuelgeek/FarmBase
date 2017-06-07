@@ -5,7 +5,8 @@ $farmer_profile = new FARMER();
 
 if(!$farmer_profile->is_logged_in())
 {
-	$farmer_profile->redirect('index');
+	$_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+  $farmer_profile->redirect('farmer_signin');
 }
 
 $stmt = $farmer_profile->runQuery("SELECT * FROM tbl_farmers WHERE email=:email_id");
@@ -90,6 +91,7 @@ if(isset($_POST['btn-edit']))
 		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		 <link href="font/css/font-awesome.css" rel="stylesheet" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/material-inputs.css">
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
 	
 		<title>Farmer | Profile</title>
@@ -188,19 +190,19 @@ if($farmer_profile->is_logged_in()) {
             <form method="post" enctype="multipart/form-data">
                 <div class="form-group col-md-8 col-md-offset-2">
                      <div class="input-group col-md-10 col-md-offset-1 ">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user">&nbsp;</i>Name</span>
+                        <!-- <span class="input-group-ad"><i class="glyphicon glyphicon-user">&nbsp;</i>Name</span> -->
                         <input type="text" name="name" class="form-control " value="<?php echo $row['name']; ?>"  readonly />
                     </div>
                 </div>
                 <div class="form-group col-md-8 col-md-offset-2">
                      <div class="input-group col-md-10 col-md-offset-1 ">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-paperclip">&nbsp;</i>Email</span>
+                        <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-paperclip">&nbsp;</i>Email</span> -->
                         <input type="email" name="email" class="form-control " value="<?php echo $row['email']; ?>"  readonly />
                     </div>
                 </div>
                 <div class="form-group col-md-8 col-md-offset-2">
                      <div class="input-group col-md-10 col-md-offset-1 ">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone">&nbsp;</i>Phone</span>
+                        <!-- <span class="input-group-addon"><i class="glyphicon glyphicon-phone">&nbsp;</i>Phone</span> -->
                         <input type="text" name="phone" class="form-control " value="<?php echo $row['phone']; ?>"  required />
                     </div>
                 </div>
@@ -230,14 +232,12 @@ if($farmer_profile->is_logged_in()) {
 
 
 
-  <footer>
-      <div class="col-md-12">
-        <div class="col-md-6 col-md-offset-3 text-center">
-          <p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-        </div>
-        
-      </div>
-    </footer>
+<?php 
+
+  //footer
+  include 'footer.php';
+
+  ?>
   </body>
   <script type="text/javascript" src="js/jquery2.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>

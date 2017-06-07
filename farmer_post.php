@@ -5,7 +5,8 @@ $farmer_post = new FARMER();
 
  if(!$farmer_post->is_logged_in())
 {
- 	$farmer_post->redirect('index.php');
+ 	$_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+ 	$farmer_post->redirect('farmer_signin');
  }
 
 $stmt = $farmer_post->runQuery("SELECT * FROM tbl_farmers WHERE email=:email_id");
@@ -29,6 +30,7 @@ if(isset($_POST['btn-post']))
 	$phone = $row['phone'];
 	$email = $row['name'];
 	$piced = $row['photo'];
+	$userID = $row['ID'];
 
 	$imgFile = $_FILES['photo']['name'];
 		$tmp_dir = $_FILES['photo']['tmp_name'];
@@ -68,7 +70,7 @@ if(isset($_POST['btn-post']))
 					// if no error occured, continue ....
 				if(!isset($errMSG))
 				{
-						if($farmer_post->farmer_post($title,$price,$phone,$location,$description,$cartegory,$userpic,$email,$piced))
+						if($farmer_post->farmer_post($title,$price,$phone,$location,$description,$cartegory,$userpic,$email,$piced,$userID))
 					{
 						$msg1 = "<div class='alert alert-success col-md-8 col-sm-8 col-md-offset-2 col-sm-offset-2' data-dismiss='alert'>
 									<button class='close ' data-dismiss='alert'>&times;</button>
@@ -98,7 +100,8 @@ if(isset($_POST['btn-post']))
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css" rel="stylesheet"></link> -->
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
-	
+		<!-- <link rel="stylesheet" href="css/materialize/css/materialize.min.css"> -->
+		<link rel="stylesheet" href="css/material-inputs.css">
 		<title>Farmer | Post</title>
 		<script type="text/javascript" src="js/jquery2.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -172,7 +175,8 @@ if($farmer_post->is_logged_in()) {
            	<div class=" col-md-8 col-md-offset-2 row text-center">
            		<h2 class="title ">Farmer Posts</h2>
            		<p> Make your posts below</p>
-           	</div>
+           		<span class="h3">Manage your previous posts<a href="manage_posts" class="btn btn-default">Here...</a></span>
+           	</div><br>
            	<div class="col-md-8 col-sm-10 col-md-offset-2 col-sm-offset-1">
            		<?php
 					if(isset($errMSG)){
@@ -210,7 +214,7 @@ if($farmer_post->is_logged_in()) {
 							</div>
 							<div class="form-group col-md-8 col-md-offset-2">
 								<label class="login-field-icon fui-lock" for="login-pass">Cartegory</label>
-								<select class="form-control" name="cartegory" required>
+								<select class="browser-default select-dropdown" name="cartegory" required>
 							     <option value="">Select Cartegory...</option>
 							        <option value="Feeds, Suppliments and Seeds">Feeds, Suppliments and Seeds</option>
 							        <option value="Farm Machinery and Tools">Farm Machinery and Tools</option>
@@ -227,21 +231,21 @@ if($farmer_post->is_logged_in()) {
 							        
 							    </select>
 							</div>
-							<div class="form-group" data-example >
+							
 								<div class=" col-md-8 col-md-offset-2">
 									 <label class="login-field-icon fui-lock " for="login-pass">Location</label>
 								  <input type="text" name="location" class="placepicker form-control" value="" placeholder="Enter a Location" id="login-pass" required />
 								 
 								</div>
 
-							</div>
+						
 							<div class="form-group col-md-8 col-md-offset-2">
 
 							<label class="control-label">Product Img.</label>
        						 <input class="input-group form-control" type="file" name="photo" accept="image/*" required />
        						 </div>
 							<div class="form-group col-md-8 col-md-offset-2">
-							<input class="btn btn-primary  btn-block" value="Post Product" name="btn-post" type="submit"/><br>
+							<input class="btn btn-primary green  btn-block" value="Post Product" name="btn-post" type="submit"/><br>
 							
 							</div>
 				</form>
@@ -251,22 +255,24 @@ if($farmer_post->is_logged_in()) {
     	
     </section>
 
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-				</div>
-				
-			</div>
-		</footer>
+	<?php 
+
+	//footer
+	include 'footer.php';
+
+	?>
 	</body>
 	
-		
+		<script src="css/materialize/js/materialize.min.js"></script>
 		<!-- <script type="text/javascript" src="js/main.js"></script> -->
 		<script type="text/javascript" src="js/jquery.validate.min.js" ></script>
 		<script type="text/javascript" src="js/validation.min.js"></script>
 		<script type="text/javascript" src="js/register.js"></script>
 		<script src="js/parsley.min.js"></script>
 
-		
+		     <script>
+     	$(document).ready(function() {
+    $('select').material_select();
+  });
+     </script>
 </html>

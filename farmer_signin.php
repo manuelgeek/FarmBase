@@ -6,7 +6,7 @@
 
 	if($farmer_signin->is_logged_in()!="")
 {
-	$farmer_signin->redirect('index.php');
+	$farmer_signin->redirect('index');
 }
 
 
@@ -22,8 +22,16 @@ if(isset($_POST['btn-login']))
 	
 	if($farmer_login->login($email,$upass))
 	{
-		$farmer_login->redirect('index.php');
+		if(isset($_SESSION['redirect_url'])){
+			$redirect_url = (isset($_SESSION['redirect_url'])) ? $_SESSION['redirect_url'] : '/';
+			unset($_SESSION['redirect_url']);
+			header("Location: $redirect_url", true, 303);
+		} else {
+		$farmer_login->redirect('index');
+		}
 	}
+
+	
 }
 ?>
 <!DOCTYPE html>
@@ -82,14 +90,12 @@ if(isset($_POST['btn-login']))
 			</div>
 		</div>
 	</section>
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-				</div>
-				
-			</div>
-		</footer>
+	<?php 
+
+	//footer
+	include 'footer.php';
+
+	?>
 	</body>
 	<script type="text/javascript" src="js/jquery2.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>

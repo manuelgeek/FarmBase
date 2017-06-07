@@ -27,7 +27,8 @@ if($farmer_home_post->dbConnection())
 
 	if(!$admin_home->is_logged_in())
 {
-	$admin_home->redirect('index');
+	$_SESSION['redirect_url'] = $_SERVER['PHP_SELF']; 
+	$admin_home->redirect('consultants');
 }
 
 	if($admin_home->is_logged_in()){
@@ -247,14 +248,12 @@ if($admin_home->is_logged_in() ) {
         </div>
     </section>
     <div class="clearfix"></div>
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-				</div>
-				
-			</div>
-		</footer>
+	<?php 
+
+	//footer
+	include 'footer.php';
+
+	?>
 	</body>
 	 <script type="text/javascript" src="js/jquery2.js"></script>
     <script type="text/javascript" src="js/notifications.js"> </script>

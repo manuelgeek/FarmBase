@@ -119,6 +119,30 @@ class ADMIN
 			echo $ex->getMessage();
 		}
 	}
+
+	public function delete_blog_post($pid)
+	{
+		try
+		{							
+		$stmt = $this->conn->prepare("SELECT photo FROM message_posts WHERE ID=:pid");
+		$stmt->execute(array(':pid'=>$pid));
+		$imgRow=$stmt->fetch(PDO::FETCH_ASSOC);
+		unlink("../consultants/message_images/".$imgRow['photo']); 
+
+
+		$stmt = $this->conn->prepare("DELETE FROM message_posts WHERE ID=:pid");
+		$stmt->execute(array(':pid'=>$pid));
+          
+		
+			
+			$stmt->execute();	
+			return $stmt;
+		}
+		catch(PDOException $ex)
+		{
+			echo $ex->getMessage();
+		}
+	}
 	
 
 	

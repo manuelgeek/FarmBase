@@ -29,6 +29,7 @@ class paginate
 	
 		if($stmt->rowCount()>0)
 		{
+
 			while($row=$stmt->fetch(PDO::FETCH_ASSOC))
 			{
 
@@ -42,9 +43,9 @@ class paginate
 
 				 header("Location: blog.php?more");
 			}  -->
-			  <a href="farmer_inbox_view.php?message=<?php echo $row['ID']; ?>">
+			  <a href="farmer_inbox_view.php?message=<?php echo $row['ID']; ?>" class="clearfix">
 
-              <div class="col-md-10 col-md-offset-1  col-xs-12 col-sm-12 row-eq-height  card"  id="mauni">
+              <div class="col-md-10 col-md-offset-1  col-xs-12 col-sm-12 row-eq-height __message-item"  id="mauni">
                 <div class="col-md-3 col-sm-3 col-xs-3">
                <?php
                             $stmt1 = $this->conn->prepare("SELECT * FROM tbl_consultants WHERE name=:email_id AND photo!=''");

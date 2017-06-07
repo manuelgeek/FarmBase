@@ -29,6 +29,7 @@ if(isset($_POST['btn-login']))
 		 <link href="../css/style.css" rel="stylesheet">
 		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		 <link href="../font/css/font-awesome.css" rel="stylesheet" />
+		 <link rel="stylesheet" href="../css/materialize/css/materialize.min.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
 	
@@ -72,14 +73,12 @@ if(isset($_POST['btn-login']))
 			</div>
 		</div>
 	</section>
-	<footer>
-			<div class="col-md-12">
-				<div class="col-md-6 col-md-offset-3 text-center">
-					<p>&copy; &nbsp;<?php echo date('Y'); ?> &nbsp;All Rights Reserved </p>
-				</div>
-				
-			</div>
-		</footer>
+	<?php 
+
+	//footer
+	include '../footer.php';
+
+	?>
 	</body>
 	<script type="text/javascript" src="../js/jquery2.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>

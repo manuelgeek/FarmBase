@@ -16,7 +16,9 @@ function autocomplet() {
 		$('#country_list_id').hide();
 	}
 }
-
+function hideSuggestion() {
+		$('#country_list_id').hide();
+}
 // set_item : this function will be executed when we select an item
 function set_item(item) {
 	// change input value
@@ -24,3 +26,4 @@ function set_item(item) {
 	// hide proposition list
 	$('#country_list_id').hide();
 }
+

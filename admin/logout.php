@@ -5,12 +5,12 @@ $admin_logout = new ADMIN();
 
 if(!$admin_logout->is_logged_in())
 {
-	$admin_logout->redirect('index.php');
+	$admin_logout->redirect('index');
 }
 
 if($admin_logout->is_logged_in()!="")
 {
 	$admin_logout->logout();	
-	$admin_logout->redirect('index.php');
+	$admin_logout->redirect('index');
 }
 ?>

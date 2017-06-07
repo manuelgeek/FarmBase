@@ -43,7 +43,7 @@ class paginate
 				 header("Location: blog.php?more");
 			}  -->
 
-              <div class="col-md-12  col-xs-12 col-sm-12 row-eq-height  card"  id="mauni">
+              <div class="col-md-12  col-xs-12 col-sm-12 row-eq-height __card"  id="mauni">
                 <div class="col-md-3 col-sm-3">
                 <?php if ( $row['photo']==''){
                  echo ""; 
@@ -59,7 +59,7 @@ class paginate
                	</div>
                 	
                 <div class="col-md-9 col-sm-9 ">
-	                <a href="post_view.php?page=<?php echo $row['ID']; ?>"><h4 class="itemed h4"><b><?php echo $row['title']; ?></b></h4></a>
+	                <a href="post_view.php?var=<?php echo $row['ID']; ?>"><h4 class="itemed h4"><b><?php echo $row['title']; ?></b></h4></a>
 	                <span class="text"><?php
 	                	$position = 150;
 	                	$message = $row['description'];
@@ -78,7 +78,7 @@ class paginate
 
 
 	                  ?>
-					  <a href="post_view.php?page=<?php echo $row['ID']; ?>"><button class="btn btn-success btn-xs" type="submit" name="btn-more" value="<?php echo $row['ID']; ?>">Read More...</button></a>&nbsp;&nbsp;
+					  <a href="post_view.php?var=<?php echo $row['ID']; ?>"><button class="btn btn-success btn-xs" type="submit" name="btn-more" value="<?php echo $row['ID']; ?>">Read More...</button></a>&nbsp;&nbsp;
 					 </span><br>
 	                 <span class="phoned"><b> <?php echo $row['email']; ?> </b>&nbsp;&nbsp;&nbsp;</span>
 	                   <span  class="priced btn btn-default btn-xs"> <?php echo $row['phone']; ?></span>&nbsp;&nbsp;&nbsp;

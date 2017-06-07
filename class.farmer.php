@@ -75,6 +75,7 @@ class FARMER
 				
 					if($userRow['pass']==md5($upass))
 					{
+						unset($_SESSION['consultantSession']);
 						$_SESSION['farmerSession'] = $userRow['email'];
 						return true;
 					}
@@ -117,33 +118,37 @@ class FARMER
 		$_SESSION['farmerSession'] = false;
 	}
 	
-	public function delete_post($title)
+	public function delete_post($pid)
 	{
-		try {
-			// $stmt = $this->conn->prepare("SELECT * FROM tbl_farmers WHERE email='$_SESSION[farmerSession]'");
-			// //$stmt->execute(array(":email_id"=>$email));
-			// $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-			// $userRow['email']
+		try
+		{							
+		$stmt = $this->conn->prepare("SELECT photo FROM farmer_posts WHERE ID=:pid");
+		$stmt->execute(array(':pid'=>$pid));
+		$imgRow=$stmt->fetch(PDO::FETCH_ASSOC);
+		unlink("post_images/".$imgRow['photo']); 
 
-			$stmt = $this->conn->query("SELECT photo FROM farmer_posts WHERE email='$_SESSION[farmerSession]' AND name='$title'");
-		//	$stmt_select->execute(array('$_SESSION[userSession]'=>$_GET['upload_pic']));
-			$imgRow=$stmt->fetch_array();
-			unlink("post_images/".$imgRow['photo']); 
-			$stmt = $this->conn->query("DELETE FROM farmer_posts WHERE email='$_SESSION[farmerSession]' AND name='$title'");
+
+		$stmt = $this->conn->prepare("DELETE FROM farmer_posts WHERE ID=:pid");
+		$stmt->execute(array(':pid'=>$pid));
+          
+		
 			
-		} catch (PDOException $ex) {
+			$stmt->execute();	
+			return $stmt;
+		}
+		catch(PDOException $ex)
+		{
 			echo $ex->getMessage();
 		}
-
 	}
 
-	public function farmer_post($title,$price,$phone,$location,$description,$cartegory,$userpic,$email,$piced)
+	public function farmer_post($title,$price,$phone,$location,$description,$cartegory,$userpic,$email,$piced,$userID)
 	{
 		try {
 			 
 
-					$stmt = $this->conn->prepare("INSERT INTO farmer_posts(title,price,phone,location,description,cartegory,photo,email,userpic) 
-			                                             VALUES(:user_name, :user_mail, :user_phone, :user_loc, :user_desc, :user_cart, :user_pic, :user_email, :user_img)");
+					$stmt = $this->conn->prepare("INSERT INTO farmer_posts(title,price,phone,location,description,cartegory,photo,email,userpic,userID) 
+			                                             VALUES(:user_name, :user_mail, :user_phone, :user_loc, :user_desc, :user_cart, :user_pic, :user_email, :user_img, :userID)");
 					$stmt->bindparam(":user_name",$title);
 					$stmt->bindparam(":user_mail",$price);
 					$stmt->bindparam(":user_phone",$phone);
@@ -153,6 +158,7 @@ class FARMER
 					$stmt->bindparam(":user_pic",$userpic);
 					$stmt->bindparam(":user_email",$email);
 					$stmt->bindparam(":user_img",$piced);
+					$stmt->bindparam(":userID",$userID);
 					
 					$stmt->execute();	
 					return $stmt;
@@ -160,6 +166,32 @@ class FARMER
 		} catch (PDOException $ex) {
 			echo $ex->getMessage();
 		}
+	}
+
+	public function farmer_edit_post($id,$title,$price,$phone,$location,$description,$cartegory,$email,$piced,$userID)
+	{
+		try {
+			$stmt = $this->conn->prepare("UPDATE farmer_posts SET title = :title, price= :price,  phone = :user_phone,
+										location = :loc , description = :descript , cartegory = :cart , email = :email ,
+										 userpic = :user_pic ,userID = :userID WHERE ID = :id ");
+			$stmt->bindparam(":title",$title);
+			$stmt->bindparam(":price",$price);
+			$stmt->bindparam(":user_phone",$phone);
+			$stmt->bindparam(":loc",$location);
+			$stmt->bindparam(":descript",$description);
+			$stmt->bindparam(":cart",$cartegory);
+			$stmt->bindparam(":email",$email);
+			$stmt->bindparam(":user_pic",$piced);
+			$stmt->bindparam(":userID",$userID);
+			$stmt->bindparam(":id",$id);
+
+			$stmt->execute();	
+			return $stmt;
+				
+		} catch (PDOException $ex) {
+			echo $ex->getMessage();
+		}
+
 	}
 
 	public function farmer_profile($phone,$userpic)
@@ -281,6 +313,28 @@ class FARMER
 			echo $ex->getMessage();
 		}
 	}
+
+	public function hide_post($hide_id,$hide)
+	{
+		try {
+			 
+
+					$stmt = $this->conn->prepare("UPDATE farmer_posts SET hidden =:user_hide WHERE ID = :hide_id");
+			
+					$stmt->bindparam(":user_hide",$hide);
+					$stmt->bindparam(":hide_id",$hide_id);
+					
+					
+					
+					$stmt->execute();	
+					return $stmt;
+				
+		} catch (PDOException $ex) {
+			echo $ex->getMessage();
+		}
+	}
+
+	
 
 	public function send_message($name,$senderEmail,$phone,$message,$postID,$receiverEmail)
 	{

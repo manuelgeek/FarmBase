@@ -43,7 +43,7 @@ class paginate
 				 header("Location: blog.php?more");
 			}  -->
 
-              <div class="col-md-12  col-xs-12 col-sm-12 row-eq-height  card"  id="mauni">
+              <div class="col-md-12  col-xs-12 col-sm-12 row-eq-height  card __card"  id="mauni">
                 <div class="col-md-3 col-sm-3">
                 <?php if ( $row['photo']==''){
                  echo ""; 
@@ -70,7 +70,7 @@ class paginate
 
 
 	                  ?>
-					  <a href="blog_view.php?page=<?php echo $row['ID']; ?>"><button class="btn btn-success btn-xs" type="submit" name="btn-more" value="<?php echo $row['ID']; ?>">Read More...</button></a>&nbsp;&nbsp;
+					  <a href="blog_view.php?page=<?php echo $row['ID']; ?>"><button class="btn small btn-secondary btn-sm __item-cta" type="submit" name="btn-more" value="<?php echo $row['ID']; ?>">Read More...</button></a>&nbsp;&nbsp;
 					 </span>
 	                 <span class="phoned"><b> <?php echo $row['email']; ?> </b>&nbsp;&nbsp;&nbsp;</span>
 	                   <span  class="priced btn btn-default btn-xs"> <?php echo $row['phone']; ?></span>&nbsp;&nbsp;&nbsp;
@@ -103,9 +103,10 @@ class paginate
 		else
 		{
 			?>
-            <tr>
-            <td>Nothing here...</td>
-            </tr>
+            <div class="__nothing">
+            	<i class="fa fa-meh-o"></i>
+            	<p class="__nothing-text">No articles just yet</p>
+            </div>
             <?php
 		}
 		
