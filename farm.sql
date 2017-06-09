@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 07, 2017 at 11:17 AM
+-- Generation Time: Jun 10, 2017 at 01:49 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -158,7 +158,8 @@ INSERT INTO `farmer_posts` (`ID`, `title`, `price`, `description`, `cartegory`, 
 (53, 'chips kuku', '250', '<p>hii ni tamu walahi</p>\r\n\r\n<p>ask around</p>\r\n\r\n<p>ata watu wa KFC wanapiga order kwangu</p>\r\n\r\n<p>ulizia ninja wa kuku</p>', 'Farm Produce', '0712103837', 'kejani', '969090.jpg', 'Dennis Seroney', 0, '', '2017-04-24 16:12:35', ''),
 (54, 'Kuku Boilo', '600', '<p>ttht tyuumndfgh fghjk&nbsp; fdghj hj qwetfg ghj gtyu</p>', 'Farm Machinery and Tools', '0724540039', 'Kitui', '370761.jpg', 'Manu El', 0, '205659.jpg', '2017-05-02 11:49:46', ''),
 (56, 'Fisi Tibim aww', '500', 'this is full', 'Feeds, Suppliments and Seeds', '0724540039', 'Nairobi', '891438.jpg', 'Manu El', 1, '205659.jpg', '2017-06-06 22:14:16', '1'),
-(57, 'try', '67', 'fghj fgh ui', 'Feeds, Suppliments and Seeds', '0724540039', 'kidii', '833741.jpg', 'Manu El', 1, '205659.jpg', '2017-06-06 21:50:42', '1');
+(57, 'try', '67', 'fghj fgh ui', 'Feeds, Suppliments and Seeds', '0724540039', 'kidii', '833741.jpg', 'Manu El', 1, '205659.jpg', '2017-06-06 21:50:42', '1'),
+(58, 'Kuku Mwitu', '780', '<p>very real</p>\r\n\r\n<p>big mean</p>\r\n\r\n<p>fully african</p>', 'Livestock, Poultry and Fish', '0724540039', 'Juda', '598767.jpg', 'Manu El', 1, '205659.jpg', '2017-06-09 20:11:08', '');
 
 -- --------------------------------------------------------
 
@@ -236,7 +237,8 @@ INSERT INTO `product_fav` (`ID`, `postID`, `email`, `favourite`) VALUES
 (6, '42', 'emashmagak@gmail.com', '1'),
 (7, '8', 'emashmagak@gmail.com', '1'),
 (8, '45', 'emashmagak@gmail.com', '0'),
-(9, '56', 'emashmagak@gmail.com', '1');
+(9, '56', 'emashmagak@gmail.com', '1'),
+(10, '7', 'emashmagak@gmail.com', '1');
 
 -- --------------------------------------------------------
 
@@ -367,25 +369,26 @@ CREATE TABLE `tbl_farmers` (
   `email` varchar(100) NOT NULL,
   `phone` varchar(100) NOT NULL,
   `photo` varchar(100) NOT NULL,
-  `pass` varchar(500) NOT NULL
+  `pass` varchar(500) NOT NULL,
+  `hidden` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_farmers`
 --
 
-INSERT INTO `tbl_farmers` (`ID`, `name`, `email`, `phone`, `photo`, `pass`) VALUES
-(1, 'Manu El', 'emashmagak@gmail.com', '0724540039', '205659.jpg', '2b385e6093aa32e2a6da96353658c1ab'),
-(2, 'Manu El', 'emashmagak@live.com', '0724540039', '', '52e6faa3e83e3da54a804455d0b8e74d'),
-(3, 'Silali Gibson', 'silali@gmail.com', '0733725491', '', 'fc51f44e790e8f04b54f733356b45183'),
-(4, 'Humphrey Otieno', 'humphrey@yahoo.com', '0712345678', '804060.jpg', '262d4d3f6cf9f553a1dfd5f902426147'),
-(5, 'Manu El', 'el@mail.com', '567576879', '', 'db442f230d3deca58e3f481f3338381b'),
-(6, 'Naf Zeu', 'zeu@gmail.com', '0723456789', '509707.png', 'db442f230d3deca58e3f481f3338381b'),
-(7, 'Silali Gibson', 'gibson@mail.com', '56778687678886', '', 'db442f230d3deca58e3f481f3338381b'),
-(8, 'Dennis Seroney', 'dennisseroney@yahoo.com', '0712103837', '', '29ea5826fae0475ac770806e3337c315'),
-(9, 'Sammy Kosgey', 'sammy@gmail.com', '0712121212', '', '6132a0be89e2fe074e19f9dacf487412'),
-(10, 'John', 'john@mail.com', '0712103837', '948799.jpg', '59530efe0732fded24139374563b0e83'),
-(11, 'Ule msee', 'msee@mail.com', '837895465', '', 'db442f230d3deca58e3f481f3338381b');
+INSERT INTO `tbl_farmers` (`ID`, `name`, `email`, `phone`, `photo`, `pass`, `hidden`) VALUES
+(1, 'Manu El', 'emashmagak@gmail.com', '0724540039', '205659.jpg', '2b385e6093aa32e2a6da96353658c1ab', '0'),
+(2, 'Manu El', 'emashmagak@live.com', '0724540039', '', '52e6faa3e83e3da54a804455d0b8e74d', ''),
+(3, 'Silali Gibson', 'silali@gmail.com', '0733725491', '', 'fc51f44e790e8f04b54f733356b45183', ''),
+(4, 'Humphrey Otieno', 'humphrey@yahoo.com', '0712345678', '804060.jpg', '262d4d3f6cf9f553a1dfd5f902426147', ''),
+(5, 'Manu El', 'el@mail.com', '567576879', '', 'db442f230d3deca58e3f481f3338381b', ''),
+(6, 'Naf Zeu', 'zeu@gmail.com', '0723456789', '509707.png', 'db442f230d3deca58e3f481f3338381b', ''),
+(7, 'Silali Gibson', 'gibson@mail.com', '56778687678886', '', 'db442f230d3deca58e3f481f3338381b', ''),
+(8, 'Dennis Seroney', 'dennisseroney@yahoo.com', '0712103837', '', '29ea5826fae0475ac770806e3337c315', ''),
+(9, 'Sammy Kosgey', 'sammy@gmail.com', '0712121212', '', '6132a0be89e2fe074e19f9dacf487412', ''),
+(10, 'John', 'john@mail.com', '0712103837', '948799.jpg', '59530efe0732fded24139374563b0e83', ''),
+(11, 'Ule msee', 'msee@mail.com', '837895465', '', 'db442f230d3deca58e3f481f3338381b', '');
 
 --
 -- Indexes for dumped tables
@@ -468,7 +471,7 @@ ALTER TABLE `comment_posts`
 -- AUTO_INCREMENT for table `farmer_posts`
 --
 ALTER TABLE `farmer_posts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 --
 -- AUTO_INCREMENT for table `message_fav`
 --
@@ -483,7 +486,7 @@ ALTER TABLE `message_posts`
 -- AUTO_INCREMENT for table `product_fav`
 --
 ALTER TABLE `product_fav`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `sent_messages`
 --
