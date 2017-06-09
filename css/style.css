@@ -213,6 +213,18 @@ footer .col-md-12{
 .__form-input{
   float: right;
 }
+.__form-input1 input{
+  /*width:100%;*/
+  border-radius:3px 0 0 3px;
+  min-width:232px;
+  color: #fff!important;
+  font-size: 17px!important;
+  border-color: #fff!important;
+  border-color: #fff!important;
+}
+.__form-input1{
+  float: right;
+}
 .__form-button button{
   border-radius: 0px 3px 3px 0px;
 }
@@ -232,12 +244,13 @@ a{
 }
 #tab-panels .fa-briefcase,#tab-panels .fa-globe, #tab-panels .fa-gears, #tab-panels .fa-lightbulb-o{
   font-size: 60px;
-  color: #00796B;
+  color: #fff;  
+  /*#00796B;*/
   text-align: center;
   padding: 10px 0px;
 }
 #tab-panels a{
-  color: #00796B;
+  color: #fff;
   text-align: center
 }
 #tab-panels p{
@@ -252,11 +265,11 @@ a{
   background-color: transparent;
 }
 #info1 h2{
-  color: #00796B;
+  color: #fff;
   font-size: 40px;
 }
 #info1 p{
-  color: #9F9F7F;
+  color: #ffff8f;
   font-size: 20px;
 }
 a:hover{
@@ -340,7 +353,7 @@ article li{
 .contact-info .fa{
   font-size: 25px;
   padding: 1px 4px;
-  color: #5889C4;
+  color: #00796B;
 }
 .line{
   

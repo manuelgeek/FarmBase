@@ -9,9 +9,15 @@ $farmer_home = new FARMER();
 // 	$farmer_home->redirect('index.php');
 // }
 if($farmer_home->is_logged_in()){
+
 $stmt = $farmer_home->runQuery("SELECT * FROM tbl_farmers WHERE email=:email_id");
 $stmt->execute(array(":email_id"=>$_SESSION['farmerSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+	if ($row['hidden']==1) {
+		$farmer_home->logout();	
+		$farmer_home->redirect('farmer_signin');
+	}
 
 if ($row['photo']=="") {
 	$pic = "<img class='img-circle ' src='img/user.png' style='' height=50px width=50px />";
@@ -167,29 +173,29 @@ if($admin_home->is_logged_in() ) {
 			<div class="container">
 			  <div class="row">
 			 <div class="col-md-7 col-sm-7" id="info1">
-				  <h2>Promote <br> Respect <br> Unite</h2>
-				 <p> Reaching Out To Touch Hearts </p>
+				<b> <h2>Farmers <br> Extension officers <br> The Market</h2>
+				 <p> FarmBase <small>reaching out to all farmers</small> </p></b>
 			</div>
 			<div class="col-md-5 col-sm-5" id="tab-panels">
 				<div class="col-md-6 col-sm-6 col-xs-6" id="we">
-				  <a href="services" class="banner "><div class="maxheight">
-					<div class="fa fa-globe"><br></div><p>Trainings</p></div>
-				  </a>
+				<b>  <a href="blog" class="banner "><div class="maxheight">
+					<i class="fa fa-globe"><br></i><p>Farm Blog</p></div>
+				  </a></b>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6" id="wa">
-				  <a href="services" class="banner "><div class="maxheight">
-					<div class="fa fa-lightbulb-o"><br></div><p>Weaver iLab</p></div>
-				  </a>
+				<b>  <a href="farmer_signup" class="banner "><div class="maxheight">
+					<i class="fa fa-gears"><br></i><p>Register</p></div>
+				  </a></b>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6" id="wa">
-				  <a href="services" class="banner "><div class="maxheight1">
-					<div class="fa fa-gears"><br></div><p>New Services</p></div>
-				  </a>
+				 <b> <a href="index" class="banner "><div class="maxheight1">
+					<i class="fa fa-lightbulb-o"><br></i><p>Farmer Products</p></div>
+				  </a></b>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-6" id="we">
-				  <a href="services" class="banner "><div class="maxheight1">
-					<div class="fa fa-briefcase"><br></div><p>Property Management</p></div>
-				  </a>
+				  <b> <a href="about" class="banner "><div class="maxheight1">
+					<i class="fa fa-briefcase"><br></i><p>About Us</p></div>
+				  </a></b>
 				</div>
 			</div>
 				
@@ -207,7 +213,7 @@ if($admin_home->is_logged_in() ) {
 						<div class="__form-button">
 	                     	<button name="btn-search" class=" btn btn-success" type="submit"><i class="fa fa-search"></i></button>
 						</div>
-						<div class="__form-input">
+						<div class="__form-input1">
 	                    	 <input type="text" class="form-control" name="search" placeholder="Search Products " id="country_id" onkeyup="autocomplet()"  /> 
 						</div>
               		</form>          
@@ -320,23 +326,25 @@ if($admin_home->is_logged_in() ) {
 				<div class="col-lg-3 col-md-3 col-sm-3">
 				  <div class="single-footer-widget">
 					<div class="section-heading">
-					<h2 class="reg">Register</h2>
+					<h2 class="reg">Product Posts</h2>
 					<div class="line"></div>
 				  </div>           
-				  <p>In order for the Presbyterian Weavers members to access their accounts for the first time,follow the following simple steps. In case of any problems,our support team is always ready to help</p>
+				  <p>These are farm produce posts which are made by farmers. In you are a farmer or is intersted in farm products, you can proceed to create an account with us in order to access more services in FarmBase. Farmers can be messaged directly regarding their posts.<br>
+
+				 <a href="farmer_signup">Create an account here.</a></p>
 				  </div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3">
 				  <div class="single-footer-widget">
 					<div class="section-heading">
-					<h2 class="reg">How to Register</h2>
+					<h2 class="reg"><a href="farmer_signup" style="color: #4CAF50!important;"> How to Register</a></h2>
 					<div class="line"></div>
 				  </div>
 				  <ul class="footer-service">
-					<li><span class="fa fa-check"></span>Enter your Email address</li>
+					<li><span class="fa fa-check"></span>Enter your Personal Details</li>
 					<li><span class="fa fa-check"></span>Enter default password</li>
-					<li><span class="fa fa-check"></span>Go to Change Password</li>
-					<li><span class="fa fa-check"></span>Choose Passsword of Your Choice </li>
+					<li><span class="fa fa-check"></span>Read the Terms and Conditions</li>
+					<li><span class="fa fa-check"></span>Accept to the terms of condition</li>
 					<li><span class="fa fa-check"></span>Enjoy our services</li>
 				  </ul>
 				  </div>
@@ -348,12 +356,12 @@ if($admin_home->is_logged_in() ) {
 					<div class="line"></div>
 				  </div>
 					<ul class="tag-nav">
-					  <li><a href="home">Our Page</a></li>
-					  <li><a href="php/logpage">Login</a></li>
-					  <li><a href="about">Presbyterian Weavers</a></li>
-					  <li><a href="https://www.facebook.com/Presbyterian-Weavers-of-Kenya-377229792412452/?hc_ref=SEARCH" target="_blank">FB</a></li>
-					  <li><a href="presb.pdf" target="_blank">Constitution </a></li>
-					  <li><a href="contact">Contact</a></li>
+					  <li><a href="index">Posts</a></li>
+					  <li><a href="farmer_signin">Login</a></li>
+					  <li><a href="blog">The Blog</a></li>
+					  <li><a href="about">About Us</a></li>
+					  <li><a href="farmer_signup" >Register </a></li>
+					  <li><a href="farmer_post">Create Posts</a></li>
 					</ul>
 				  </div>
 				</div>
@@ -368,7 +376,7 @@ if($admin_home->is_logged_in() ) {
 					<p><span class="fa fa-home"></span>P.O Box, 
 					30784-00100, Nairobi</p>
 					<p><span class="fa fa-phone"></span>+254728700535,+254716590576</p>
-					<p><span class="fa fa-envelope"></span>info@presbyterianweavers.co.ke</p>
+					<p><span class="fa fa-envelope"></span>info@farmbase.co.ke</p>
 				  </address>
 				  </div>
 				</div>

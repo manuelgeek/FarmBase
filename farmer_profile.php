@@ -13,6 +13,11 @@ $stmt = $farmer_profile->runQuery("SELECT * FROM tbl_farmers WHERE email=:email_
 $stmt->execute(array(":email_id"=>$_SESSION['farmerSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if ($row['hidden']==1) {
+    $farmer_profile->logout(); 
+    $farmer_profile->redirect('farmer_signin');
+  }
+
 if ($row['photo']=="") {
 	$pic = "<img class='img-circle ' src='img/user.png' style='' height=50px width=50px />";
 }

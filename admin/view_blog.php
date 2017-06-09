@@ -45,7 +45,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
           <ul class="nav navbar-nav">
             <li ><a href="home">Home</a></li>
 
-            <li ><a href="view_posts">Viw Products</a></li>
+            <li ><a href="view_posts">View Products</a></li>
             <li class="active"><a href="view_blog">View Blog Posts</a></li>
             <!-- <li><a href="#">Tenders</a></li> -->
             <!-- <li><a href="about">About Farmbase</a></li> -->

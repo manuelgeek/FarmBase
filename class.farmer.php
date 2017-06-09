@@ -72,7 +72,11 @@ class FARMER
 			
 			if($stmt->rowCount() == 1)
 			{
-				
+				if ($userRow['hidden']==1) {
+					header("Location: farmer_signin.php?error1");
+					exit;
+				} else {
+					
 					if($userRow['pass']==md5($upass))
 					{
 						unset($_SESSION['consultantSession']);
@@ -84,6 +88,7 @@ class FARMER
 						header("Location: farmer_signin.php?error");
 						exit;
 					}
+				}
 				
 			}
 			else

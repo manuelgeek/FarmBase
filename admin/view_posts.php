@@ -27,6 +27,30 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
      <link href="../font/css/font-awesome.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 
+    <script type="text/javascript" src="../js/jquery2.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+      function cwRating(id){
+        $.ajax({
+          type:'POST',
+          url:'block_user.php',
+          data:'id='+id,
+          success:function(msg){
+            if(msg == 'hidden'){
+               $('.faver'+id).removeClass('btn-warning').addClass('btn-success');
+               $('.check'+id).removeClass('y').addClass('glyphicon-check');
+            }else{
+               $('.faver'+id).removeClass('btn-success').addClass('btn-warning');
+               $('.check'+id).removeClass('glyphicon-check').addClass('y');
+            }
+          }
+        });
+        return false;
+      }
+      </script>
+
 </head>
    
 <body>
@@ -44,7 +68,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li ><a href="home">Home</a></li>
-            <li class="active"><a href="view_posts">Viw Products</a></li>
+            <li class="active"><a href="view_posts">View Products</a></li>
             <li><a href="view_blog">View Blog Posts</a></li>
             <!-- <li><a href="#">Tenders</a></li> -->
             <!-- <li><a href="about">About Farmbase</a></li> -->
@@ -77,8 +101,6 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
    </div>                             
          
                     
-<script type="text/javascript" src="../js/jquery2.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/datatables.min.js"></script>
 <script src="../js/sweetalert2.min.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -94,7 +116,8 @@ function loadtable() { var tabler = $('#table_view').dataTable( {
          while ($comm = $stmt->fetch(PDO::FETCH_ASSOC)) {
           extract($comm);
                         ?>
-      ["<?php echo $ID; ?>","<?php echo $title; ?>","<?php echo $email; ?>","<?php echo $location; ?>","<a class='btn btn-sm btn-danger' id='delete_product' data-id='<?php echo $ID; ?>' href='javascript:void(0)'><i class='glyphicon glyphicon-trash'></i></a>"],
+
+      ["<?php echo $ID; ?>","<?php echo $title; ?>","<?php echo $email; ?>","<?php echo $location; ?>","<a class='btn btn-sm btn-danger' id='delete_product' data-id='<?php echo $ID; ?>' href='javascript:void(0)'><i class='glyphicon glyphicon-trash'></i></a>&nbsp; &nbsp;<span><button name='btn-fav'  class='btn faver<?php echo $userID; ?> btn-warning btn-sm' onClick='cwRating(<?php echo $userID; ?>)' type='submit' value='<?php echo $userID; ?>'><span>Hide&nbsp;<i class='check<?php echo $userID; ?> glyphicon y'></span></button></span>"],
       <?php }  ?>
       ],
         "columns": [

@@ -5,7 +5,7 @@ require_once 'consultants/class.consultant.php';
 $farmer_home = new FARMER();
 $admin_home = new CONSULTANT();		               			
  
-			               				$stmt = $farmer_home->runQuery("SELECT * FROM comment_posts WHERE postID=:email_id ORDER BY ID DESC LIMIT 5");
+			               				$stmt = $farmer_home->runQuery("SELECT * FROM comment_posts WHERE postID=:email_id ORDER BY ID DESC LIMIT 10");
 										$stmt->execute(array(":email_id"=>$_SESSION['$var']));
 										if($stmt->rowCount()>0){
 											while ($comm = $stmt->fetch(PDO::FETCH_ASSOC)) {

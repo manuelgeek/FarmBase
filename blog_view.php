@@ -316,13 +316,11 @@ if($admin_home->is_logged_in() ) {
 					               <?php if($farmer_home->is_logged_in() OR $admin_home->is_logged_in() )  {
  								?>
 										  <button name="btn-fav"  class="btn faver btn-default btn-sm" onClick="cwRating(<?php echo $message['ID']; ?>)" type="submit" value="<?php echo $message['ID']; ?>"><span>Favourite&nbsp;</span><i class="glyphicon glyphicon-star"></i>&nbsp;&nbsp;</button>
-								<?php } ?>
-				<?php
-				$stmt2 = $farmer_home->runQuery("SELECT * FROM message_fav WHERE favourite = '1' AND postID = '$message[ID]' ");
-				$stmt2->execute();
-				$blog_likes = $stmt2->rowCount();
-				?>
-											<span class="itemed h4 " style="font-style: italic;"><?php echo $blog_likes; ?>Likes</span>
+								<?php } 
+
+								?>
+												
+											<span id="likecount-blog"></span>
 										</div>
 				
 			               		</div>
@@ -340,6 +338,8 @@ if($admin_home->is_logged_in() ) {
 			               				<button type="submit" class="btn btn-primary btn-sm" id="btn-comment" onclick="comment();" name="btn-comment" >Comment</button>
 			               			</form>
 			               		</div>
+			               		<?php }  else {?>
+			               		<p><a href="farmer_signin">Login</a> | <a href="farmer_signup">Register</a> to comment </p>
 			               		<?php } ?>
 			               		<div class="col-md-12 row">
 			               			<h4 class="h4">Comments</h4>
@@ -477,5 +477,15 @@ if($admin_home->is_logged_in() ) {
 		<script type="text/javascript" src="js/comment.js"></script>
 		<script type="text/javascript" src="js/send-message-cons.js"></script>
 		<script type="text/javascript" src="js/notifications.js"> </script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+             $("#likecount-blog").load("likecount_blog.php");
+            setInterval(function(){
+              $("#likecount-blog").load("likecount_blog.php")
+            }, 1000);
+
+        });
+		</script>
 
 </html>

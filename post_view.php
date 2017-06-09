@@ -280,12 +280,8 @@ width: 232px;"></ul>
 					              	?>
 									  <button name="btn-fav"  class="btn faver btn-default btn-sm" onClick="cwRating(<?php echo $message['ID']; ?>)" type="submit" value="<?php echo $message['ID']; ?>"><span>Favourite&nbsp;</span><i class="glyphicon glyphicon-star"></i>&nbsp;&nbsp;</button>
 							<?php } ?>
-				<?php
-				$stmt2 = $farmer_home->runQuery("SELECT * FROM product_fav WHERE favourite = '1' AND postID = '$message[ID]' ");
-				$stmt2->execute();
-				$blog_likes = $stmt2->rowCount();
-				?>						
-											<span class="itemed h4 " style="font-style: italic;"><?php echo $blog_likes; ?>Likes</span>
+								
+											<span id="likecount-post"></span>
 									</div>
 								</div>
 								<!-- Card class inaudhi -->
@@ -455,5 +451,15 @@ width: 232px;"></ul>
 		 <!--   JS for sending Messages  -->
 		<script type="text/javascript" src="js/send-message.js"></script>
 		<script type="text/javascript" src="js/notifications.js"> </script>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+             $("#likecount-post").load("likecount_post.php");
+            setInterval(function(){
+              $("#likecount-post").load("likecount_post.php")
+            }, 1000);
+
+        });
+		</script>
 		
 </html>

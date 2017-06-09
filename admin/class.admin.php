@@ -143,6 +143,26 @@ class ADMIN
 			echo $ex->getMessage();
 		}
 	}
+
+	public function block_user($hide_id,$hide)
+	{
+		try {
+			 
+
+					$stmt = $this->conn->prepare("UPDATE tbl_farmers SET hidden =:user_hide WHERE ID = :hide_id");
+			
+					$stmt->bindparam(":user_hide",$hide);
+					$stmt->bindparam(":hide_id",$hide_id);
+					
+					
+					
+					$stmt->execute();	
+					return $stmt;
+				
+		} catch (PDOException $ex) {
+			echo $ex->getMessage();
+		}
+	}
 	
 
 	

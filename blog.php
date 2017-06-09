@@ -16,6 +16,11 @@ $stmt = $farmer_home->runQuery("SELECT * FROM tbl_farmers WHERE email=:email_id"
 $stmt->execute(array(":email_id"=>$_SESSION['farmerSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+if ($row['hidden']==1) {
+		$farmer_home->logout();	
+		$farmer_home->redirect('farmer_signin');
+	}
+
 if ($row['photo']=="") {
 	$pic = "<img class='img-circle ' src='img/user.png' style='' height=50px width=50px />";
 }
@@ -259,23 +264,25 @@ if($admin_home->is_logged_in() ) {
 				<div class="col-lg-3 col-md-3 col-sm-3">
 				  <div class="single-footer-widget">
 					<div class="section-heading">
-					<h2 class="reg">Register</h2>
+					<h2 class="reg">FarmBase Blog</h2>
 					<div class="line"></div>
 				  </div>           
-				  <p>In order for the Presbyterian Weavers members to access their accounts for the first time,follow the following simple steps. In case of any problems,our support team is always ready to help</p>
+				  <p>These are Agricultural Posts which are posted by distinct extension officers regarding different farming tips and solutions. Farmers can also comment or even message the officers directly for personalised assistance. Special request poss can be made.<br>
+
+				 <a href="farmer_signup">Create an account </a>here to take part</p>
 				  </div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-3">
 				  <div class="single-footer-widget">
 					<div class="section-heading">
-					<h2 class="reg">How to Register</h2>
+					<h2 class="reg"><a href="farmer_signup" style="color: #4CAF50!important;"> How to Register</a></h2>
 					<div class="line"></div>
 				  </div>
 				  <ul class="footer-service">
-					<li><span class="fa fa-check"></span>Enter your Email address</li>
+					<li><span class="fa fa-check"></span>Enter your Personal Details</li>
 					<li><span class="fa fa-check"></span>Enter default password</li>
-					<li><span class="fa fa-check"></span>Go to Change Password</li>
-					<li><span class="fa fa-check"></span>Choose Passsword of Your Choice </li>
+					<li><span class="fa fa-check"></span>Read the Terms and Conditions</li>
+					<li><span class="fa fa-check"></span>Accept to the terms of condition</li>
 					<li><span class="fa fa-check"></span>Enjoy our services</li>
 				  </ul>
 				  </div>
@@ -287,12 +294,12 @@ if($admin_home->is_logged_in() ) {
 					<div class="line"></div>
 				  </div>
 					<ul class="tag-nav">
-					  <li><a href="home">Our Page</a></li>
-					  <li><a href="php/logpage">Login</a></li>
-					  <li><a href="about">Presbyterian Weavers</a></li>
-					  <li><a href="https://www.facebook.com/Presbyterian-Weavers-of-Kenya-377229792412452/?hc_ref=SEARCH" target="_blank">FB</a></li>
-					  <li><a href="presb.pdf" target="_blank">Constitution </a></li>
-					  <li><a href="contact">Contact</a></li>
+					  <li><a href="index">Posts</a></li>
+					  <li><a href="farmer_signin">Login</a></li>
+					  <li><a href="blog">The Blog</a></li>
+					  <li><a href="about">About Us</a></li>
+					  <li><a href="farmer_signup">Register </a></li>
+					  <li><a href="farmer_post">Create Posts</a></li>
 					</ul>
 				  </div>
 				</div>
@@ -307,7 +314,7 @@ if($admin_home->is_logged_in() ) {
 					<p><span class="fa fa-home"></span>P.O Box, 
 					30784-00100, Nairobi</p>
 					<p><span class="fa fa-phone"></span>+254728700535,+254716590576</p>
-					<p><span class="fa fa-envelope"></span>info@presbyterianweavers.co.ke</p>
+					<p><span class="fa fa-envelope"></span>info@farmbase.co.ke</p>
 				  </address>
 				  </div>
 				</div>
