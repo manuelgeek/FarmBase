@@ -46,7 +46,7 @@ class paginate
                  echo ""; 
                 }else {?>
                 	
-                	 <img  src="post_images/<?php echo $row['photo']; ?>"  class=" product-img item_image img-responsive" />
+                	 <img  src="post_images/<?php echo $row['photo']; ?>"  class=" product-img item_image img-responsive" style="max-height: 175px!important;" />
                 	
 		               <?php }
 		               		

@@ -362,9 +362,7 @@ if($admin_home->is_logged_in() ) {
 					  <li><a href="about">About Us</a></li>
 					  <li><a href="farmer_signup" >Register </a></li>
 					  <li><a href="farmer_post">Create Posts</a></li>
-					  <li><button disabled class="js-push-btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-				        Enable Push Messaging
-				      </button></li>
+					 
 					</ul>
 				  </div>
 				</div>

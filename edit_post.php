@@ -187,11 +187,13 @@ if($farmer_post->is_logged_in()) {
 							<div class="form-group col-md-8 col-md-offset-2">
 							<label class="login-field-icon fui-lock" for="login-pass">Description.... </label>
 							  <textarea type="text" name="description" class="form-control login-field" value="<?php echo $message['description']; ?>" placeholder="Description..." id="login-pass" required > </textarea>
+
+							  <div id="trackingDiv"></div>
 							  	<script>
 							  		var config = {};
 							  		config.value = '<?php echo $message['description']; ?>';
 	                   				 CKEDITOR.replace( 'description' , config );
-							  		}
+							  		
 				                </script>
 							  
 							</div>
