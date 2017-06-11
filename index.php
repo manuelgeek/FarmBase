@@ -66,6 +66,7 @@ if($farmer_home_post->dbConnection())
 		 <link rel="stylesheet" href="css/material-inputs.css">
 
 		 <script async src="site.js"></script>
+		  <script async src="offline.js"></script>
 
 		 <link rel="manifest" href="manifest.json" />
 	
@@ -83,7 +84,7 @@ if($farmer_home_post->dbConnection())
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">Farmers</a>
+          <a class="navbar-brand" href="index">FarmBase</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -232,14 +233,16 @@ if($admin_home->is_logged_in() ) {
     <section>
     <div class="container" id="panel_post">
                 <ul  class="nav  nav-tabs " id="myTab">
-                   <li  class="active"><a href="#feeds" data-toggle="tab">Feeds, Suppliments and Seeds</a></li>
-                  <li><a href="#tools" data-toggle="tab">Farm Machinery and Tools</a></li>
+                   <li class="active"><a href="#farm" data-toggle="tab">Farm Produce</a></li>
+                 
                   <li><a href="#livestock" data-toggle="tab">Livestock, Poultry and Fish</a></li>
-                  <li><a href="#farm" data-toggle="tab">Farm Produce</a></li>
+                  
+                  <li ><a href="#feeds" data-toggle="tab">Feeds, Suppliments and Seeds</a></li>
+                   <li><a href="#tools" data-toggle="tab">Farm Machinery and Tools</a></li>
                 </ul>
                 <!-- Tab panes -->
-                <div class="tab-content  clearfix col-md-12  ">
-                  <div class="tab-pane fade in active" id="feeds">
+                <div class="tab-content  clearfix col-md-12  " style="padding: 0px!important;">
+                  <div class="tab-pane fade " id="feeds" style="padding: 0px!important;">
 				  	 
 						
 		                   <?php 
@@ -259,7 +262,7 @@ if($admin_home->is_logged_in() ) {
 					
 						  
                   </div>
-                  <div class="tab-pane fade in" id="tools">
+                  <div class="tab-pane fade in" id="tools" style="padding: 0px!important;">
 							
 						
 		                   <?php 
@@ -278,7 +281,7 @@ if($admin_home->is_logged_in() ) {
 		                  
 						
                   </div>
-                  <div class="tab-pane fade " id="livestock">
+                  <div class="tab-pane fade " id="livestock" style="padding: 0px!important;">
 						
 		                   <?php 
 		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Livestock, Poultry and Fish' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       
@@ -296,7 +299,7 @@ if($admin_home->is_logged_in() ) {
 		                  
 					
                   </div>
-                  <div class="tab-pane fade " id="farm">
+                  <div class="tab-pane fade in active" id="farm" style="padding: 0px!important;">
 						
 		                   <?php 
 		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = 'Farm Produce' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       

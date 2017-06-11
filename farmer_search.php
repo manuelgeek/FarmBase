@@ -85,7 +85,7 @@ if($farmer_home_post->dbConnection())
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">Farmers</a>
+          <a class="navbar-brand" href="index">FarmBase</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -98,7 +98,7 @@ if($farmer_home_post->dbConnection())
             
           <ul class="nav navbar-nav navbar-right">
             
-           <?php
+<?php
 if($farmer_home->is_logged_in()) {
   ?>
   <li id="header_inbox_bar" class="dropdown">
@@ -109,7 +109,7 @@ if($farmer_home->is_logged_in()) {
    <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
-                <?php
+<?php
           if(isset($pic)){
             echo $pic;
           } else { ?>                 
@@ -125,7 +125,7 @@ if($farmer_home->is_logged_in()) {
                 <li><a href="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign Out</a></li>
               </ul>
             </li><?php } ?>
-         <?php if(!$farmer_home->is_logged_in() AND !$admin_home->is_logged_in() )  {
+<?php if(!$farmer_home->is_logged_in() AND !$admin_home->is_logged_in() )  {
   ?>
 
               <li><a href="farmer_signin" title="login">Login</a></li>           <?php }

@@ -85,7 +85,7 @@ if($farmer_home_post->dbConnection())
 			}
 		</script>
 		<!-- favourite colouring -->
-		<?php
+<?php
 			$stmt = $farmer_home->runQuery("SELECT * FROM product_fav WHERE postID=:email_id AND email='$row[email]'");
 			$stmt->execute(array(":email_id"=>$message['ID']));
 			$list = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -232,7 +232,7 @@ width: 232px;"></ul>
     <section style="padding-top:50px">
     <div class="container" id="panel_post">
     	 
-					<div class="container">
+					
 						<!--Nimetoa class:card hapa -->
 				        <div class='col-md-12 row-eq-height' id="post-view">
 							
@@ -241,14 +241,14 @@ width: 232px;"></ul>
 					                 echo ""; 
 					                }else {?>
 					                	
-					                	 <img  src="post_images/<?php echo $message['photo']; ?>" style="padding: 0px 0px;"  class="item_image img-responsive" />
+					                	 <img  src="post_images/<?php echo $message['photo']; ?>" style="padding: 0px 0px;"  class="item_image img-responsive" /><br>
 					                	
 							               <?php }
 							               		
 					                ?>
 			               		</div>
-			                <div class="col-md-9 col-sm-9 ">
-			                	<div class="col-md-8">
+			                <div class="col-md-9 col-sm-9 col-xs-12 " style="padding: 0px!important;">
+			                	<div class="col-md-8 col-sm-8 col-xs-12">
 			                		<span class="label __label"><?php echo $message['cartegory']; ?></span>
 					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3> <span class="itemed h5"> <?php echo date('M j, Y',strtotime($message['timer'])); ?></span>
 					                <span class="text"><?php echo $message['description']; ?></span>
@@ -274,7 +274,7 @@ width: 232px;"></ul>
 										}
 										$diff = round($diff);
 										echo $diff . " " . $strTime[$i] . "(s) ago ";
-								   } ?></span>
+								   } ?></span><br><br>
 								    <div style="float: right;">
 					              <?php if($farmer_home->is_logged_in() OR $admin_home->is_logged_in() )  {
 					              	?>
@@ -282,10 +282,10 @@ width: 232px;"></ul>
 							<?php } ?>
 								
 											<span id="likecount-post"></span>
-									</div>
+									</div><div class="clearfix"></div>
 								</div>
 								<!-- Card class inaudhi -->
-								<div class="col-md-4">
+								<div class="col-md-4 col-sm-4 col-xs-12">
 									<div class="__card __author-card clearfix panel panel-success">
 										<div class="panel-heading">
 											<h3 class="h4 ad-posted">Add Posted By</h3>
@@ -317,7 +317,7 @@ width: 232px;"></ul>
 										</div>
 			            				<div class="panel-footer">
 			    
-				            			<button style="width: 100%;" class="btn btn-sm btn-success __item-cta" type="submit" >Call</button><br>
+				            			<button href="tel:<?php echo $message['phone']; ?>" style="width: 100%;" class="btn btn-sm btn-success __item-cta" type="submit" >Call</button><br>
 				            			<button style="width: 100%;" class="btn btn-sm btn-success __item-cta" type="submit" data-toggle="modal" data-target="#messageForm"  >Message</button>
 
 			            				</div>
@@ -326,10 +326,9 @@ width: 232px;"></ul>
 			            		</div>
 			               </div><br>
 			            </div>
-			         </div>
-					
-				            
-						<div class="col-md-12  row-eq-height">
+			   
+            </div>
+            <div class="col-md-12  row-eq-height">
 						<h2 class="h2 also-like">You may also like;</h2>
 		                   <?php 
 		                    $query = "SELECT * FROM farmer_posts WHERE cartegory = '$message[cartegory]' AND (hidden ='' OR hidden = 0) ORDER BY timer DESC";       
@@ -346,7 +345,6 @@ width: 232px;"></ul>
 		                 </div> -->
 		                   </div>	
 					
-            </div>
            
     </section>
 	<?php 

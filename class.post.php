@@ -46,7 +46,7 @@ class paginate
                  echo ""; 
                 }else {?>
                 	
-                	 <img  src="post_images/<?php echo $row['photo']; ?>"  class=" product-img item_image img-responsive" style="max-height: 175px!important;" />
+                	 <img  src="post_images/<?php echo $row['photo']; ?>"  class=" product-img item_image img-responsive"  />
                 	
 		               <?php }
 		               		
@@ -86,7 +86,7 @@ class paginate
                  </div>
                  <div class="panel-footer">
                  	<div class="" role="group" aria-label="Basic example" style="width:100%">
-					  <a type="button" class="btn small btn-secondary btn-sm __item-cta" style="font-size: 10px;width:100%"><?php echo $row['phone']; ?></a>
+					  <a href="tel:<?php echo $row['phone']; ?>" type="button" class="btn small btn-secondary btn-sm __item-cta" style="font-size: 10px;width:100%"><?php echo $row['phone']; ?></a>
 					  <a href="post_view.php?var=<?php echo $row['ID']; ?>" class="btn small btn-secondary btn-sm __item-cta" style="font-size: 10px;width:100%">View Product</a>
 					</div>
                  	

@@ -85,7 +85,7 @@ if($farmer_home_post->dbConnection())
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">Farmers</a>
+          <a class="navbar-brand" href="index">FarmBase</a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -218,7 +218,7 @@ if($admin_home->is_logged_in() ) {
 				            			</div>
 			            			</div>
 			            			<div class="col-md-12" style="padding:2px;">
-				            			<button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit">Call</button><br>
+				            			<button href="tel:<?php echo $message['phone']; ?>" style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit">Call</button><br>
 				            			<!-- <button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit" data-toggle="modal" data-target="#messageForm">Message</button> -->
 			            			</div>
 			            		</div>

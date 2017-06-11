@@ -1,122 +1,100 @@
-var CACHE_NAME = 'my-site-cache-v1';
-var urlsToCache = [
-        '/',
+//Cache polyfil to support cacheAPI in all browsers
+importScripts('./cache-polyfil.js');
+
+var cacheName = 'cache-v1';
+
+//Files to save in cache
+var files = [
+   '/',
         'index.php',
         'about.php',
         'manifest.json',
         'farmer_images',
+        'post_images',
         'img/icon-192.png',
         'site.js',
+        'offline.js',
         'css/style.css',
+        'css/materialize/',
+        'css',
+        'js',
         'css/bootstrap.min.css',
         'font/css/font-awesome.css',
         'js/jquery2.js',
         'js/bootstrap.min.js'
 ];
 
-self.addEventListener('install', function(event) {
+//Adding `install` event listener
+self.addEventListener('install', (event) => {
+  console.info('Event: Install');
+
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        console.log('Cache ready');
-        return cache.addAll(urlsToCache);
+    caches.open(cacheName)
+    .then((cache) => {
+      //[] of files to cache & if any of the file not present `addAll` will fail
+      return cache.addAll(files)
+      .then(() => {
+        console.info('All files are cached');
+        return self.skipWaiting(); //To forces the waiting service worker to become the active service worker
       })
-  );
-});
-
-self.addEventListener('fetch', function(event) {
-   if (event.request.url == 'https://farmbase.venturezhub.com/') {
-    console.info('responding to farmbase fetch with Service Worker! 🤓');
-    event.respondWith(fetch(event.request).catch(function(e) {
-      let out = {Gold: 1, Size: -1, Actions: []};
-      return new Response(JSON.stringify(out));
-    }));
-    return;
-  }
-
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      return response || fetch(event.request);
+      .catch((error) =>  {
+        console.error('Failed to cache', error);
+      })
     })
   );
 });
 
-self.addEventListener('activate', function(event) {
+/*
+  FETCH EVENT: triggered for every request made by index page, after install.
+*/
 
-  var cacheWhitelist = [CACHE_NAME];
+//Adding `fetch` event listener
+self.addEventListener('fetch', (event) => {
+  console.info('Event: Fetch');
 
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
+  var request = event.request;
+
+  //Tell the browser to wait for newtwork request and respond with below
+  event.respondWith(
+    //If request is already in cache, return it
+    caches.match(request).then((response) => {
+      if (response) {
+        return response;
+      }
+
+      //if request is not cached, add it to cache
+      return fetch(request).then((response) => {
+        var responseToCache = response.clone();
+        caches.open(cacheName).then((cache) => {
+            cache.put(request, responseToCache).catch((err) => {
+              console.warn(request.url + ': ' + err.message);
+            });
+          });
+
+        return response;
+      });
+    })
+  );
+});
+
+/*
+  ACTIVATE EVENT: triggered once after registering, also used to clean up caches.
+*/
+
+//Adding `activate` event listener
+self.addEventListener('activate', (event) => {
+  console.info('Event: Activate');
+
+  //Remove old and unwanted caches
+  event.waitUntil( 
+    caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map(function(cacheName) {
-          // We remove all the cache except the ones in cacheWhitelist array
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
+        cacheNames.map((cache) => {
+          if (cache !== cacheName) {     //cacheName = 'cache-v1'
+            return caches.delete(cache); //Deleting the cache
           }
         })
       );
-    })
-  );
-});
-
-'use strict';
-
-/* eslint-disable max-len */
-
-const applicationServerPublicKey = 'BEedvcZaChOWRvv_r38aiR-9zi4ITzCm6n2VX1OkDrDBxnlvvBz8lu2iu3HHOfxnrg0Vh0zP_cs6dz0JZIebWRE';
-
-/* eslint-enable max-len */
-
-function urlB64ToUint8Array(base64String) {
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  return outputArray;
-}
-
-self.addEventListener('push', function(event) {
-  console.log('[Service Worker] Push Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-
-  const title = 'Push Codelab';
-  const options = {
-    body: 'FarmBase Notification.',
-    icon: 'images/icon.png',
-    badge: 'images/badge.png'
-  };
-
-  event.waitUntil(self.registration.showNotification(title, options));
-});
-
-self.addEventListener('notificationclick', function(event) {
-  console.log('[Service Worker] Notification click Received.');
-
-  event.notification.close();
-
-  event.waitUntil(
-    clients.openWindow('https://developers.google.com/web/')
-  );
-});
-
-self.addEventListener('pushsubscriptionchange', function(event) {
-  console.log('[Service Worker]: \'pushsubscriptionchange\' event fired.');
-  const applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
-  event.waitUntil(
-    self.registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: applicationServerKey
-    })
-    .then(function(newSubscription) {
-      // TODO: Send to application server
-      console.log('[Service Worker] New subscription: ', newSubscription);
     })
   );
 });

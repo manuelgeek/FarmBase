@@ -4,7 +4,7 @@
   "short_name": "FarmBase",
   "display": "standalone",
   "start_url": "/",
-  "theme_color": "#673ab6",
+  "theme_color": "#00796B",
   "background_color": "#4CAF50",
   "display": "standalone",
   "icons": [

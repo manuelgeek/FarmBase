@@ -10,8 +10,8 @@ $admin_home = new CONSULTANT();
 										if($stmt->rowCount()>0){
 											while ($comm = $stmt->fetch(PDO::FETCH_ASSOC)) {
 												?>
-								<div class="col-md-12 card">
-									<div class="col-md-3 col-sm-3 col-xs-3">
+								
+									<div class="col-md-3 col-sm-3 col-xs-2">
 				            			<?php
 				            			 if ($comm['userpic']=="") {
 												$pic3 = "<img class='img-circle ' src='img/user.png' style='' padding:0px; height=50px width=50px />";
@@ -26,7 +26,7 @@ $admin_home = new CONSULTANT();
 												<?php
 												}?>
 				            		</div>
-				            		<div class="col-md-9 col-sm-9 col-xs-9">
+				            		<div class="col-md-9 col-sm-9 col-xs-10">
 				            			<p class="text"><?php echo $comm['comment']; ?></p>
 				            			<span class="phoned"><?php echo $comm['email']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				            			 <span class="itemed h5 " style="font-style: italic;"><?php 
@@ -48,18 +48,9 @@ $admin_home = new CONSULTANT();
 												echo $diff . " " . $strTime[$i] . "(s) ago ";
 										   } ?></span></span>
 
-				            			<?php if($farmer_home->is_logged_in() OR $admin_home->is_logged_in() )  {
- 											?>
-				            			<div style="float: right;">
-				            				<form method="post" id="btn-comments">
-												 <button name="btn-comm-like" class="btn btn-default btn-sm" type="submit" value="<?php echo $comm['ID']; ?>"><span>Like&nbsp;</span><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;</button>
-												 <button name="btn-comm-like" class="btn btn-default btn-sm" type="submit" value="<?php echo $comm['ID']; ?>"><span>Dislike&nbsp;</span><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;</button>
-											 <!--  <span>Comment&nbsp;</span><i class="glyphicon glyphicon-comment"></i><br>  -->
-											</form>
-										</div>
-									<?php } ?>
+				            			
 								</div>
-				            </div>
+				            
 											<?php }
 										} else
 											{

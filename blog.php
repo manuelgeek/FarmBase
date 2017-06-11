@@ -76,7 +76,7 @@ if($farmer_home_post->dbConnection())
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">Farmers</a>
+          <a class="navbar-brand" href="index">FarmBase</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -165,18 +165,19 @@ if($admin_home->is_logged_in() ) {
 	            <div class="col-md-3 __nimetoa-card">
 	                <div class="__category-filter">
 	                	<ul  class="list-group" id="myTab">
-	                   <li  class="active list-group-item"><a href="#feeds" data-toggle="tab">Feeds, Suppliments and Seeds</a></li>
-	                  <li class="list-group-item"><a href="#tools" data-toggle="tab">Farm Machinery and Tools</a></li>
+	                   <li  class="active list-group-item"><a href="#farm" data-toggle="tab">Farm Produce</a></li>
+	                  
 	                  <li class="list-group-item"><a href="#livestock" data-toggle="tab">Livestock, Poultry and Fish</a></li>
-	                  <li class="list-group-item"><a href="#farm" data-toggle="tab">Farm Produce</a></li>
+	                  <li class="list-group-item"><a href="#feeds" data-toggle="tab">Feeds, Suppliments and Seeds</a></li>
+	                  <li class="list-group-item"><a href="#tools" data-toggle="tab">Farm Machinery and Tools</a></li>
 	                </ul>
 	                </div>
 	             </div>
                 <!-- Tab panes -->
                 <div class="tab-content  clearfix col-md-9 ">
-                  <div class="tab-pane fade in active" id="feeds">
+                  <div class="tab-pane fade in " id="feeds">
 				  		
-				  		<div class="col-md-12  row-eq-height">
+				  		
 		                   <?php 
 		                    $query = "SELECT * FROM message_posts WHERE cartegory = 'Feeds, Suppliments and Seeds' ORDER BY timer DESC";       
 		                    $records_per_page=6;
@@ -190,13 +191,13 @@ if($admin_home->is_logged_in() ) {
 		                    ?>
 		                    </ul>
 		                 </div>
-		                   </div>	
+		                
 					
 						  
                   </div>
-                  <div class="tab-pane fade in" id="tools">
+                  <div class="tab-pane fade " id="tools">
 							
-						<div class="col-md-12 row-eq-height">
+						
 		                   <?php 
 		                    $query = "SELECT * FROM message_posts WHERE cartegory = 'Farm Machinery and Tools' ORDER BY timer DESC";       
 		                    $records_per_page=6;
@@ -210,11 +211,11 @@ if($admin_home->is_logged_in() ) {
 		                    ?>
 		                    </ul>
 		                 </div>
-		                   </div>
+		                  
 						
                   </div>
                   <div class="tab-pane fade " id="livestock">
-						<div class="col-md-12 row-eq-height">
+						
 		                   <?php 
 		                    $query = "SELECT * FROM message_posts WHERE cartegory = 'Livestock, Poultry and Fish' ORDER BY timer DESC";       
 		                    $records_per_page=6;
@@ -228,11 +229,11 @@ if($admin_home->is_logged_in() ) {
 		                    ?>
 		                    </ul>
 		                 </div>
-		                   </div>
+		                  
 					
                   </div>
-                  <div class="tab-pane fade " id="farm">
-						<div class="col-md-12 row-eq-height">
+                  <div class="tab-pane fade in active" id="farm">
+						
 		                   <?php 
 		                    $query = "SELECT * FROM message_posts WHERE cartegory = 'Farm Produce' ORDER BY timer DESC";       
 		                    $records_per_page=6;
@@ -246,7 +247,7 @@ if($admin_home->is_logged_in() ) {
 		                    ?>
 		                    </ul>
 		                 </div>
-		                   </div>
+		                   
 
                   </div>
                   

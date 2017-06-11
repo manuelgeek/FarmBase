@@ -73,7 +73,7 @@ class paginate
 					  <a href="blog_view.php?page=<?php echo $row['ID']; ?>"><button class="btn small btn-secondary btn-sm __item-cta" type="submit" name="btn-more" value="<?php echo $row['ID']; ?>">Read More...</button></a>&nbsp;&nbsp;
 					 </span>
 	                 <span class="phoned"><b> <?php echo $row['email']; ?> </b>&nbsp;&nbsp;&nbsp;</span>
-	                   <span  class="priced btn btn-default btn-xs"> <?php echo $row['phone']; ?></span>&nbsp;&nbsp;&nbsp;
+	                  <a href="tel:<?php echo $row['phone']; ?>"> <span  class="priced btn btn-default btn-xs"> <?php echo $row['phone']; ?></span></a>&nbsp;&nbsp;&nbsp;
 	                    <span class="itemed h5 " style="font-style: italic;"><?php
 	                     date_default_timezone_set('Africa/Nairobi'); 
 	                    			$timed = $row['timer'];

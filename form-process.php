@@ -25,7 +25,7 @@ if (empty($_POST["message"])) {
 
 
 $EmailTo = "emailaddress@test.com";
-$Subject = "New Message Received";
+$Subject = "New FarmBase Message Received";
 
 // prepare email body text
 $Body = "";

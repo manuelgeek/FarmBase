@@ -132,7 +132,7 @@ function cwRating(id){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">Farmers</a>
+          <a class="navbar-brand" href="index">FarmBase</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -216,25 +216,14 @@ if($admin_home->is_logged_in() ) {
 	</div>
     <section>
     <div class="container" id="panel_post">
-    	 <div class="how-works-area col-md-12">
-				
-            <div class="how-works">
-	            <!-- <div class="col-md-3 card">
-	                <ul  class="nav  nav-tabs " id="myTab">
-	                   <li  class="active"><a href="#feeds" data-toggle="tab">Feeds, Suppliments and Seeds</a></li>
-	                  <li><a href="#tools" data-toggle="tab">Farm Machinery and Tools</a></li>
-	                  <li><a href="#livestock" data-toggle="tab">Livestock, Poultry and Fish</a></li>
-	                  <li><a href="#farm" data-toggle="tab">Farm Produce</a></li>
-	                </ul>
-	             </div> -->
-                <!-- Tab panes -->
-                <div class="tab-content  clearfix col-md-10 col-md-offset-1 ">
-                  <div class="tab-pane fade in active" id="feeds">
+    
+                <div class="tab-content  clearfix  ">
+                  <div class="tab-pane fade in active" id="feeds" style="width: 100%!important; padding: 0px!important;">
                   		<?php
                   			//php codes taken to top
                   		?>
 							<h2 class="h2">More on <?php echo $message['title']; ?></h2>
-				        <div class='col-md-12 row-eq-height card'>
+				        <div class='col-md-12 row-eq-height card' ">
 							
 								<div class="col-md-5 col-sm-5">
 					                <?php if ( $message['photo']==''){
@@ -247,8 +236,8 @@ if($admin_home->is_logged_in() ) {
 							               		
 					                ?>
 			               		</div>
-			                <div class="col-md-7 col-sm-7 ">
-			                	<div class="col-md-7">	
+			                <div class="col-md-7 col-sm-7 " style="padding: 0px!important;">
+			                	<div class="col-md-7" style="padding: 0px!important;">	
 				                	<h6 class="itemed h6"><?php echo $message['cartegory']; ?></h6>
 					                <h3 class="itemed h3"><b><?php echo $message['title']; ?></b></h3><span class="itemed h5"> <?php echo date('M j, Y',strtotime($message['timer'])); ?></span>
 					                <h4 class="itemed h4 " style="font-style: italic;"><?php 
@@ -292,14 +281,14 @@ if($admin_home->is_logged_in() ) {
 												}?>
 				            			</div>
 				            			<div class="col-md-9">
-				            				<p class="phoned"><?php echo $message['email']; ?></p>
+				            				<p class="phoned"><?php echo $message['userName']; ?></p>
 				            				
 					                		 
 				            			</div>
 			            			</div>
 			            			<div class="col-md-12" style="padding:2px;">
-				            			<button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit">Call</button><br>
-				            			<button style="width: 200px; margin: 2px;" class="btn btn-sm btn-success" type="submit" data-toggle="modal" data-target="#messageForm">Message</button>
+				            			<button style="width: 150px; margin: 2px;" class="btn btn-sm btn-success" href="tel:<?php echo $message['phone']; ?>" type="submit">Call</button><br>
+				            			<button style="width: 150px; margin: 2px;" class="btn btn-sm btn-success" type="submit" data-toggle="modal" data-target="#messageForm">Message</button>
 			            			</div>
 			            		</div>
 			               </div>
@@ -308,9 +297,9 @@ if($admin_home->is_logged_in() ) {
 			               			<span class="text"><?php echo $message['description']; ?></span>
 					              
 					               
-					                 <span class="phoned"><span class=""> By:&nbsp; </span><b><?php echo $message['email']; ?></b>&nbsp;&nbsp;&nbsp;</span>
+					                 <span class="phoned"><span class=""> By:&nbsp; </span><b><?php echo $message['userName']; ?></b>&nbsp;&nbsp;&nbsp;</span>
 					                   <span  class="priced btn btn-default btn-xs"> <?php echo $message['phone']; ?></span>&nbsp;&nbsp;&nbsp;
-					                   <span  class="priced btn btn-default btn-xs hidden-sm hidden-md hidden-lg"> Message</span>&nbsp;&nbsp;&nbsp;
+					                   <br>
 
 					                    <div style="float: right;">
 					               <?php if($farmer_home->is_logged_in() OR $admin_home->is_logged_in() )  {
@@ -324,33 +313,41 @@ if($admin_home->is_logged_in() ) {
 										</div>
 				
 			               		</div>
-			               </div>
+			               </div><div class="clearfix"></div>
 			               <!--   php comments removed -->
 			               <div class="col-md-12 row">
 			               		<h3 class="h3">Add Comment</h3>
 			               </div>
-			               <div class="col-md-10 col-md-offset-1">
+			              
 			               	<?php if($farmer_home->is_logged_in() OR $admin_home->is_logged_in() )  {
  								?>
 			               		<div class="col-md-10 col-md-offset-1">
 			               			<form method="post" id="comment-form">
-			               				<textarea name="comment" class="form-control" id="comment-box" required></textarea>
+			               				<textarea name="comment" class="form-control" id="comment-box" required></textarea><br>
 			               				<button type="submit" class="btn btn-primary btn-sm" id="btn-comment" onclick="comment();" name="btn-comment" >Comment</button>
 			               			</form>
-			               		</div>
+			               		</div><br>
 			               		<?php }  else {?>
-			               		<p><a href="farmer_signin">Login</a> | <a href="farmer_signup">Register</a> to comment </p>
+			               		<p><a href="farmer_signin">Login</a> | <a href="farmer_signup">Register</a> to comment </p><br>
 			               		<?php } ?>
-			               		<div class="col-md-12 row">
+			               			<div class="row col-md-12">
 			               			<h4 class="h4">Comments</h4>
-			               			<div class="col-md-12 row " id="read-comments">
+			               			</div>
+			               			<div class="clearfix"></div><br>
+			               			<div class="col-md-12" id="read-comments" style="padding: 0px!important;">
 			               			<!-- Comments display here...-->
 			               			</div>
-			               		</div>
-			               </div>
+			               		
+			               
 			            </div>
-				  		
-				  		<div class="col-md-12  row-eq-height">
+				  	
+					
+						  
+                  </div>
+                 
+                  
+                </div>
+                <div class="col-md-12  row-eq-height">
 				  		<h2 class="h2">You may also like;</h2>
 		                   <?php 
 		                    $query = "SELECT * FROM message_posts WHERE cartegory = '$message[cartegory]' ORDER BY timer DESC";       
@@ -366,14 +363,6 @@ if($admin_home->is_logged_in() ) {
 		                    <!-- </ul>
 		                 </div> -->
 		                   </div>	
-					
-						  
-                  </div>
-                 
-                  
-                </div>
-            </div>
-           </div>
         </div>
     </section>
 	<?php 
