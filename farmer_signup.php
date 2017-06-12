@@ -68,7 +68,7 @@ if($farmer_signup->is_logged_in())
 								<input type="checkbox" class="" name="check" required  id="t&c"/> &nbsp; &nbsp;Agree to Terms and Conditions -->
 								<p>
 							      <input type="checkbox" class="" name="check" required  id="t&c"/>
-							      <label for="t&c">Agree to <a href="" data-toggle="modal" data-target="#messageForm" > Terms and Condition</a></label>
+							      <label for="t&c">Read the <a href="" data-toggle="modal" data-target="#messageForm" > Terms and Condition</a> and Agree</label>
 							    </p>		
 							</div>
 							</label>
@@ -79,7 +79,8 @@ if($farmer_signup->is_logged_in())
 						</div>
 						<div class="col-md-8 col-md-offset-2 form-group">
 							
-							<p>Already Have Account?<a href="farmer_signin" class="login-link" alt="">Log In</a></p>
+							<p>Already Have Account?<a href="farmer_signin" class="login-link" alt="">Log In</a></p><br>
+							<a href="index" class="login-link" alt="Sign Up">Back Home</a>
 							
 						</div>
 					</form>
@@ -105,25 +106,32 @@ if($farmer_signup->is_logged_in())
 							
 							 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" class="modal fade" id="messageForm">
 								<div class="modal-dialog">
-									<div class="modal-content1">
+								
 										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-											<h4 class="modal-title">FarmBase Terms and Conditions</h4>
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="text-danger"> &times;</span></button>
+											<h5 class="">FarmBase Terms and Conditions</h5>
 										</div>
 										<div class="modal-body">
 											<article>
 												<p>
-													IMPORTANCE OF COUNSELLING Counselling is important to the institution and even to the modern world. The importance are: <br>
-													1. Counselling in marriage and relationship help people to bond better and make relationship smoother with fewer conflicts.<br>
-													 2. Helps one improve the skills of decision making, reduce tension, maintain a better self-esteem and confidence and feel more positive and optimistic towards life.<br>
-													  3. Many old age people who are often treated as commodity in the houses feed nee
+													<span class="text-warning"> IMPORTANT NOTICE: Please read these terms and conditions before registering an account. The terms are:</span> <br>
+													1. You are required to use your full original names in the app. Phone numbers are for reaching you, your exact phone numbers will help.<br>
+													 2. Posts made should be valid and the imaages shared must be strictly an agricultural produce.<br>
+													  3. Any user can register, but only those with valid posts are allowed to make such posts. Everybody can be a farmer.<br>
+													 4. Use the Web App platform to grow your network. Sending spam requests is not allowed and won't build you as a farmer.<br>
+													 <span class="text-danger">Disclaimar*</span><br>
+													 Any violation of the above rules will lead to the user being blocked for few hours or even permanent blocking depending on the saverity of the violation.<br>
+													 Take note of the above.<br>
+													 <span class="text-success">Welcome to FarmBase for more farming connections. FarmBase, a palce where the Vision 2030 agricultural goals lie.</span>
 												</p>
 											</article>
 										</div>
 										<div class="modal-footer">
-										<p class="nnot">Create an <a href="farmer_signin">account </a> with us today</p>
+										<p class="nnot"><!-- Create an <a href="farmer_signin">account </a> with us today
+										<br>
+ -->										Thanks for choosing FarmBase.</p>
 										</div>
-									</div>
+									
 								</div>
 							</div>	
 											

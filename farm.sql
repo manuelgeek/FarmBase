@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2017 at 01:49 AM
+-- Generation Time: Jun 12, 2017 at 01:42 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -97,7 +97,15 @@ INSERT INTO `comment_posts` (`ID`, `postID`, `comment`, `email`, `liked`, `userp
 (56, '19', 'nice post', 'Manu El', '', '205659.jpg', '2017-05-18 13:23:03'),
 (57, '18', 'rrraaah', 'Manu El', '', '205659.jpg', '2017-06-02 13:43:37'),
 (58, '18', 'riah', 'Manu El', '', '205659.jpg', '2017-06-02 13:43:59'),
-(59, '2', 'real', 'Manu El', '', '205659.jpg', '2017-06-06 19:49:42');
+(59, '2', 'real', 'Manu El', '', '205659.jpg', '2017-06-06 19:49:42'),
+(60, '2', 'dfghjk', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:11'),
+(61, '2', 'cvbnm', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:14'),
+(62, '2', 'xcvb', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:17'),
+(63, '2', 'sdfbnm,', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:20'),
+(64, '2', 'nm,', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:23'),
+(65, '2', 'zxcvbn', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:27'),
+(66, '2', 'vbnm,', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:29'),
+(67, '2', 'asdfvbnm', 'Manu El', '', '205659.jpg', '2017-06-11 17:36:32');
 
 -- --------------------------------------------------------
 
@@ -157,7 +165,7 @@ INSERT INTO `farmer_posts` (`ID`, `title`, `price`, `description`, `cartegory`, 
 (50, 'kibuyu', 'free', '<p>this is</p>\r\n\r\n<h1>very true. <strong>try i</strong>t</h1>', 'Feeds, Suppliments and Seeds', '0724540039', 'kitui', '657082.png', 'Manu El', 0, '205659.jpg', '2017-04-08 18:27:07', ''),
 (53, 'chips kuku', '250', '<p>hii ni tamu walahi</p>\r\n\r\n<p>ask around</p>\r\n\r\n<p>ata watu wa KFC wanapiga order kwangu</p>\r\n\r\n<p>ulizia ninja wa kuku</p>', 'Farm Produce', '0712103837', 'kejani', '969090.jpg', 'Dennis Seroney', 0, '', '2017-04-24 16:12:35', ''),
 (54, 'Kuku Boilo', '600', '<p>ttht tyuumndfgh fghjk&nbsp; fdghj hj qwetfg ghj gtyu</p>', 'Farm Machinery and Tools', '0724540039', 'Kitui', '370761.jpg', 'Manu El', 0, '205659.jpg', '2017-05-02 11:49:46', ''),
-(56, 'Fisi Tibim aww', '500', 'this is full', 'Feeds, Suppliments and Seeds', '0724540039', 'Nairobi', '891438.jpg', 'Manu El', 1, '205659.jpg', '2017-06-06 22:14:16', '1'),
+(56, 'Fisi Tibim', '500', '', 'Feeds, Suppliments and Seeds', '0724540039', 'Nairobi', '891438.jpg', 'Manu El', 1, '205659.jpg', '2017-06-10 21:03:37', '0'),
 (57, 'try', '67', 'fghj fgh ui', 'Feeds, Suppliments and Seeds', '0724540039', 'kidii', '833741.jpg', 'Manu El', 1, '205659.jpg', '2017-06-06 21:50:42', '1'),
 (58, 'Kuku Mwitu', '780', '<p>very real</p>\r\n\r\n<p>big mean</p>\r\n\r\n<p>fully african</p>', 'Livestock, Poultry and Fish', '0724540039', 'Juda', '598767.jpg', 'Manu El', 1, '205659.jpg', '2017-06-09 20:11:08', '');
 
@@ -184,7 +192,7 @@ INSERT INTO `message_fav` (`ID`, `postID`, `email`, `favourite`) VALUES
 (6, '17', 'emashmagak@gmail.com', '1'),
 (7, '19', 'emashmagak@live.com', '1'),
 (8, '19', 'emashmagak@gmail.com', '0'),
-(9, '2', 'emashmagak@gmail.com', '1');
+(9, '2', 'emashmagak@gmail.com', '0');
 
 -- --------------------------------------------------------
 
@@ -195,7 +203,7 @@ INSERT INTO `message_fav` (`ID`, `postID`, `email`, `favourite`) VALUES
 CREATE TABLE `message_posts` (
   `ID` int(11) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `description` varchar(500) NOT NULL,
+  `description` longtext NOT NULL,
   `cartegory` varchar(100) NOT NULL,
   `phone` varchar(100) NOT NULL,
   `userName` varchar(100) NOT NULL,
@@ -466,7 +474,7 @@ ALTER TABLE `tbl_farmers`
 -- AUTO_INCREMENT for table `comment_posts`
 --
 ALTER TABLE `comment_posts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 --
 -- AUTO_INCREMENT for table `farmer_posts`
 --

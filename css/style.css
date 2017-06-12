@@ -1,3 +1,5 @@
+@import url('css/normalize.css');
+
 html , body{
 	font-family: 'Roboto', sans-serif !important;
 }
@@ -501,6 +503,9 @@ article li{
     }
 }
   
-  
+.col-lg-2 {
+  width: 100%!important;
+  margin: 10px!important;
+} 
   
   

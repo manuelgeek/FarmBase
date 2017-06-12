@@ -69,13 +69,19 @@ if(isset($_POST['btn-login']))
 						<div class="col-md-6 col-md-offset-3 form-group">
 							<input type="password" class="form-control" name="password" placeholder="Enter Your Password" required />
 						</div>
+
 						<div class="col-md-6 col-md-offset-3 form-group">
+						<p>
+							      <input type="checkbox" class="" name="check"   id="t&c"/>
+							      <label for="t&c"> Remember Me</label>
+							    </p>	
 							<input type="submit" class="col-md-8 col-md-offset-2 btn btn-primary btn-small" name="btn-login" value="Sign In" />
 						</div>
 						<div class="col-md-6 col-md-offset-3 form-group">
-							<div><input type="checkbox" class="" name="rem"   />Remember Me</div><br>
+							
 							<a href="consultant_reset" class="login-link" alt="Forgot Password">Forgot Password?</a><br><br>
-							<a href="../farmer_signin" class="login-link" alt="Sign Up">Farmer Sign in</a>
+							<a href="../farmer_signin" class="login-link" alt="Sign Up">Farmer Sign in</a><br>
+							<a href="../index" class="login-link" alt="Sign Up">Back Home</a>
 						</div>
 					</form>
 				</div>
