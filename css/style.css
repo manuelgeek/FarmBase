@@ -125,8 +125,10 @@ footer .col-md-12{
 }
 .__about{
   background: url(../img/about-bg.jpg) !important;
+   background-size: 100% 100%!important;
+    background-repeat: no-repeat!important;
   height:100vh;
-  font-size:24px;
+
   color:#fff;
 }
 .__nothing{
@@ -236,9 +238,11 @@ footer .col-md-12{
 
 header{
   padding: 10px 0px;
-  background:  url(../img/slide.jpg) center 0 repeat;
+  background-image:  url(../img/slide.jpg) ;
+   background-size: 100% 100%;
+    background-repeat: no-repeat;
   position: relative;
-  
+  opacity: 0.8;
 }
 a{
   text-decoration: none;
@@ -429,6 +433,9 @@ article li{
   .panel-footer .btn{
     font-size: 7px!important;
   }
+  #indexer{
+  margin: 0px!important;
+} 
 }
   @media (min-width:321px) and (max-width:360px) {
 .img-solo img {
@@ -441,6 +448,9 @@ article li{
   .panel-footer .btn{
     font-size: 7px!important;
     }
+    #indexer{
+  margin: 0px!important;
+}  
 }
 @media (min-width:361px) and (max-width:480px) {
 .img-solo img {
@@ -453,6 +463,9 @@ article li{
   .panel-footer .btn{
     font-size: 7px!important;
     }
+    #indexer{
+  margin: 10px;
+}  
 }
  @media (min-width:481px) and (max-width:768px ) {
 .img-solo img {
@@ -508,4 +521,6 @@ article li{
   margin: 10px!important;
 } 
   
-  
+#indexer{
+  margin: 10px;
+}  

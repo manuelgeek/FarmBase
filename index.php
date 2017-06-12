@@ -165,7 +165,7 @@ if($admin_home->is_logged_in() ) {
     </nav>
     <div class="clearfix"></div>
    	 <div class="col-lg-2 col-lg-offset-5">
-		<br style="margin: 20px;">
+		<br id="indexer" >
 	</div>
 
 	</section>

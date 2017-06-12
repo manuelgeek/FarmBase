@@ -145,13 +145,24 @@ if($admin_about->is_logged_in() ) {
 		<div class="container" id="home">
 			<div class="row">
 				<div class="col-md-12 __about" id="home1">
-					<div class="col-md-8 col-md-offset-2" >
+					<div class="col-md-8 col-md-offset-2" ><br>
 						
 						<h2> About Us</h2>
 						<p>
 							This project is supposed to help farmers advertise their products and get help from profesional agricultural extension officers.
 							It is more of a convinience tool that leverages on current web app development technologies.
 						</p>
+
+					</div>
+					<div class="col-md-8 col-md-offset-2" >
+						
+						<div class="col-md-8 col-md-offset-2">
+						<h3 class="h3">Kenya Vision 2030. Agriculture Pillar.</h2>
+							<img src="img/logo.png" class="img-responsive" alt="kenya">
+							<a href="https://www.vision2030.go.ke" alt="vision2030" target="_blank">Vision 2030</a>
+							<br>
+							<p>FarmBase will steer Agriculture towards this Pillar in the vision 2030</p>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-12" id="contact">
@@ -191,7 +202,10 @@ if($admin_about->is_logged_in() ) {
 								<div class="col-md-10 col-md-offset-1">
 									<h3>Address</h3>
 									<address>
-										<p><b>Location: </b>Kitui, 40333</p><br>
+										<p><b>Location: </b>Kisii, 40333</p><br>
+										<p><b>Site :</b>Jomo Building, Kisii</p>
+										<p><b>Phone :</b>+254 724540039</p>
+										<p><b>Phone :</b>+254 733725491</p>
 										<p><b>Email :</b>farming@gmail.com</p>
 									</address><hr>
 									<h3>Follow us</h3>
