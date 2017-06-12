@@ -13,3 +13,5 @@ RewriteRule ^(.*)$ $1.html
 
 
 </IfModule>
+
+ErrorDocument 404 /error.html
