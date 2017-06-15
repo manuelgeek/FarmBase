@@ -125,14 +125,11 @@ class paginate
 	
 	public function paginglink($query,$records_per_page)
 	{
-		 error_reporting( ~E_NOTICE ); // avoid notice
+		
 		$self = $_SERVER['PHP_SELF'];
 		
 		$stmt = $this->conn->prepare($query);
-		if ($stmt->rowCount() >0) {
-			$stmt->execute();
-		}
-		
+		$stmt->execute();
 		
 		$total_no_of_records = $stmt->rowCount();
 		

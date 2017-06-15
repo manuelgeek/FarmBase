@@ -180,11 +180,13 @@ if($admin_home->is_logged_in() ) {
 				  		
 		                   <?php 
 		                    $query = "SELECT * FROM message_posts WHERE cartegory = 'Feeds, Suppliments and Seeds' ORDER BY timer DESC";       
-		                    $records_per_page=6;
+		                    $records_per_page=1;
 		                    $newquery = $paginate->paging($query,$records_per_page);
 		                    $paginate->dataview($newquery);
 		                    ?>
+
 		                 <div class=" col-md-10 col-xs-12 col-md-offset-1">
+		                   <div class="clearfix"></div>
 		                 	<ul class="pagination">
 		                    <?php
 		                    $paginate->paginglink($query,$records_per_page);        
@@ -205,6 +207,7 @@ if($admin_home->is_logged_in() ) {
 		                    $paginate->dataview($newquery);
 		                    ?>
 		                 <div class=" col-md-10 col-xs-12 col-md-offset-1">
+		                   <div class="clearfix"></div>
 		                 	<ul class="pagination">
 		                    <?php
 		                    $paginate->paginglink($query,$records_per_page);        
@@ -223,6 +226,7 @@ if($admin_home->is_logged_in() ) {
 		                    $paginate->dataview($newquery);
 		                    ?>
 		                 <div class=" col-md-10 col-xs-12 col-md-offset-1">
+		                   <div class="clearfix"></div>
 		                 	<ul class="pagination">
 		                    <?php
 		                    $paginate->paginglink($query,$records_per_page);        
@@ -241,6 +245,7 @@ if($admin_home->is_logged_in() ) {
 		                    $paginate->dataview($newquery);
 		                    ?>
 		                 <div class=" col-md-10 col-xs-12 col-md-offset-1">
+		                   <div class="clearfix"></div>
 		                 	<ul class="pagination">
 		                    <?php
 		                    $paginate->paginglink($query,$records_per_page);        

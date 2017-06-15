@@ -51,6 +51,7 @@ if(isset($_POST['btn-reset']))
 		 <link href="font/css/font-awesome.css" rel="stylesheet" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
+		 <link rel="stylesheet" href="css/materialize/css/materialize.min.css">
 	
 		<title>Farmer | Login</title>
 	</head>
