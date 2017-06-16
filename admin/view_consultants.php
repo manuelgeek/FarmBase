@@ -46,8 +46,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
             <li ><a href="home">Home</a></li>
 
             <li ><a href="view_posts">View Products</a></li>
-            <li class="active"><a href="view_blog">View Blog Posts</a></li>
-            <li><a href="view_users">View Users</a></li>
+            <li><a href="view_blog">View Blog Posts</a></li>
+            <li class="active"><a href="view_users">View Users</a></li>
             <li><a href="view_consultants">View Consultants</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -72,7 +72,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <br style="margin: 30px;">
   </div>
   <div class="col-md-8 col-md-offset-2 text-center" style="color:#00796b;">
-    <h2>FarmBase Consultant Posts</h2>
+    <h2>FarmBase Registered Consultants</h2>
   </div>
 
                                 
@@ -93,20 +93,20 @@ $(document).ready(function()
 function loadtable() { var tabler = $('#table_view').dataTable( {
         "aaData": [
         <?php 
-        $stmt = $admin_view->runQuery("SELECT * FROM message_posts  ORDER BY ID DESC ");
+        $stmt = $admin_view->runQuery("SELECT * FROM tbl_consultants  ORDER BY ID DESC ");
         $stmt->execute();
          while ($comm = $stmt->fetch(PDO::FETCH_ASSOC)) {
           extract($comm);
                         ?>
-      ["<?php echo $ID; ?>","<?php echo $title; ?>","<?php echo $userEmail; ?>","<?php echo $phone; ?>","<a class='btn btn-sm btn-danger' id='delete_product' data-id='<?php echo $ID; ?>' href='javascript:void(0)'><i class='glyphicon glyphicon-trash'></i></a>"],
+      ["<?php echo $ID; ?>","<?php echo $name; ?>","<?php echo $email; ?>","<?php echo $phone; ?>","<?php echo date('M j, Y',strtotime($timer)); ?>"],
       <?php }  ?>
       ],
         "columns": [
             { "title": "ID" },
-            { "title": "Post Title" },
-            { "title": "Posted By" },
-            { "title": "Phone" },
-            { "title": "Action" }
+            { "title": "Name" },
+            { "title": "Email" },
+            { "title": "Phone No" },
+            { "title": "Registered At" }
         ]
     }); 
     }  
@@ -117,60 +117,9 @@ function loadtable() { var tabler = $('#table_view').dataTable( {
 	 $('#table_view')
 	.addClass('table table-bordered table-striped');
 </script>
-<script>
-  $(document).ready(function(){
-   
-    
-    $(document).on('click', '#delete_product', function(e){
-      
-      var productId = $(this).data('id');
-      SwalDelete(productId);
-      e.preventDefault();
-    });
-    
-  });
-  
-  function SwalDelete(productId){
-    
-    swal({
-      title: 'Are you sure?',
-      text: "It will be deleted permanently!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-      showLoaderOnConfirm: true,
-        
-      preConfirm: function() {
-        return new Promise(function(resolve) {
-             
-           $.ajax({
-            url: 'delete_blog.php',
-            type: 'POST',
-              data: 'delete='+productId,
-              dataType: 'json'
-           })
-           .done(function(response){
-            swal('Deleted!', response.message, response.status);
-            tabler.ajax.reload();
-            //loadtable();
-           })
-           .fail(function(){
-            swal('Oops...', 'Something went wrong with ajax !', 'error');
-           });
-        });
-        },
-      allowOutsideClick: false        
-    }); 
-    
-  }
-  
- 
-  
-</script>
 
- <h4><a href="home">Back to Panel</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="print_blogs" class="btn btn-success">Print Preview</a> </h4>
+
+<h4><a href="home">Back to Panel</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="print_consultants" class="btn-btn success">Print Preview</a> </h4>
  <?php 
 
   //footer

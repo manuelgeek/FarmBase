@@ -1,6 +1,6 @@
 // autocomplet : this function will be executed every time we change the text
 function autocomplet() {
-	var min_length = 0; // min caracters to display the autocomplete
+	var min_length = 1; // min caracters to display the autocomplete
 	var keyword = $('#country_id').val();
 	if (keyword.length >= min_length) {
 		$.ajax({

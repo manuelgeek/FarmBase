@@ -26,11 +26,16 @@ include 'register.php';
 		 <link href="../css/style.css" rel="stylesheet">
 		<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 		 <link href="../font/css/font-awesome.css" rel="stylesheet" />
-     <link rel="stylesheet" href="../css/materialize/css/materialize.min.css">
+     <link rel="stylesheet" href="../css/material-inputs.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 		 <!-- <link rel="shortcut icon" href="images/asawa.jpg"> -->
 	
 		<title>Admin | Home</title>
+    <style type="text/css">
+      .h2,.main-chart,.mt,.li_heart{
+        color: #00796b!important:;
+      }
+    </style>
 	</head>
 	<body>
 	<section>
@@ -50,8 +55,8 @@ include 'register.php';
             <li class="active"><a href="home">Home</a></li>
             <li><a href="view_posts">View Products</a></li>
              <li><a href="view_blog">View Blog Posts</a></li>
-            <!-- <li><a href="#">Tenders</a></li> -->
-            <!-- <li><a href="about">About Farmbase</a></li> -->
+            <li><a href="view_users">View Users</a></li>
+            <li><a href="view_consultants">View Consultants</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
          
@@ -115,7 +120,7 @@ include 'register.php';
                   <span class="li_data"></span>
                   <h3>OK</h3>
                         </div>
-                  <p>Your server is working perfectly. Relax & enjoy.</p>
+                  <p>FarmBase Admin Panel, Have the control here..</p>
                       </div>
                     
                     </div><!-- /row mt -->  

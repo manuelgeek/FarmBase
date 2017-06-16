@@ -70,8 +70,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
             <li ><a href="home">Home</a></li>
             <li class="active"><a href="view_posts">View Products</a></li>
             <li><a href="view_blog">View Blog Posts</a></li>
-            <!-- <li><a href="#">Tenders</a></li> -->
-            <!-- <li><a href="about">About Farmbase</a></li> -->
+            <li><a href="view_users">View Users</a></li>
+            <li><a href="view_consultants">View Consultants</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
          
@@ -94,7 +94,9 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
      <div class="col-lg-2 col-lg-offset-5">
     <br style="margin: 30px;">
   </div>
-
+  <div class="col-md-8 col-md-offset-2 text-center" style="color:#00796b;">
+    <h2>FarmBase Farmer Posts</h2>
+  </div>
                                 
    <div class="container">
    <table id="table_view"></table>
@@ -117,7 +119,7 @@ function loadtable() { var tabler = $('#table_view').dataTable( {
           extract($comm);
                         ?>
 
-      ["<?php echo $ID; ?>","<?php echo $title; ?>","<?php echo $email; ?>","<?php echo $location; ?>","<a class='btn btn-sm btn-danger' id='delete_product' data-id='<?php echo $ID; ?>' href='javascript:void(0)'><i class='glyphicon glyphicon-trash'></i></a>&nbsp; &nbsp;<span><button name='btn-fav'  class='btn faver<?php echo $userID; ?> btn-warning btn-sm' onClick='cwRating(<?php echo $userID; ?>)' type='submit' value='<?php echo $userID; ?>'><span>Hide&nbsp;<i class='check<?php echo $userID; ?> glyphicon y'></span></button></span>"],
+      ["<?php echo $ID; ?>","<?php echo $title; ?>","<?php echo $email; ?>","<?php echo $location; ?>","<?php echo $price; ?>","<a class='btn btn-sm btn-danger' id='delete_product' data-id='<?php echo $ID; ?>' href='javascript:void(0)'><i class='glyphicon glyphicon-trash'></i></a>&nbsp; &nbsp;<span><button name='btn-fav'  class='btn faver<?php echo $userID; ?> btn-warning btn-sm' onClick='cwRating(<?php echo $userID; ?>)' type='submit' value='<?php echo $userID; ?>'><span>Hide&nbsp;<i class='check<?php echo $userID; ?> glyphicon y'></span></button></span>"],
       <?php }  ?>
       ],
         "columns": [
@@ -125,6 +127,7 @@ function loadtable() { var tabler = $('#table_view').dataTable( {
             { "title": "Product Title" },
             { "title": "Posted By" },
             { "title": "Location" },
+            { "title": "Price" },
             { "title": "Action" }
         ]
     }); 
@@ -189,7 +192,7 @@ function loadtable() { var tabler = $('#table_view').dataTable( {
   
 </script>
 
- <h4><a href="home">Back to Panel</a></h4>
+ <h4><a href="home">Back to Panel</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="print_posts" class="btn btn-success">Print Preview</a> </h4>
  <?php 
 
   //footer
