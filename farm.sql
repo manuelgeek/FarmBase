@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 12, 2017 at 01:42 PM
+-- Generation Time: Jun 17, 2017 at 04:55 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.0.15
 
@@ -355,15 +355,16 @@ CREATE TABLE `tbl_consultants` (
   `email` varchar(100) NOT NULL,
   `phone` varchar(100) NOT NULL,
   `photo` varchar(100) NOT NULL,
-  `pass` varchar(500) NOT NULL
+  `pass` varchar(500) NOT NULL,
+  `timer` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_consultants`
 --
 
-INSERT INTO `tbl_consultants` (`ID`, `name`, `email`, `phone`, `photo`, `pass`) VALUES
-(1, 'Magak Emmanuel', 'emashmagak@live.com', '0724540039', '584309.jpg', '2b385e6093aa32e2a6da96353658c1ab');
+INSERT INTO `tbl_consultants` (`ID`, `name`, `email`, `phone`, `photo`, `pass`, `timer`) VALUES
+(1, 'Magak Emmanuel', 'emashmagak@live.com', '0724540039', '584309.jpg', '2b385e6093aa32e2a6da96353658c1ab', '2017-06-16 15:14:45');
 
 -- --------------------------------------------------------
 
@@ -378,25 +379,26 @@ CREATE TABLE `tbl_farmers` (
   `phone` varchar(100) NOT NULL,
   `photo` varchar(100) NOT NULL,
   `pass` varchar(500) NOT NULL,
-  `hidden` varchar(5) NOT NULL
+  `hidden` varchar(5) NOT NULL,
+  `timer` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_farmers`
 --
 
-INSERT INTO `tbl_farmers` (`ID`, `name`, `email`, `phone`, `photo`, `pass`, `hidden`) VALUES
-(1, 'Manu El', 'emashmagak@gmail.com', '0724540039', '205659.jpg', '2b385e6093aa32e2a6da96353658c1ab', '0'),
-(2, 'Manu El', 'emashmagak@live.com', '0724540039', '', '52e6faa3e83e3da54a804455d0b8e74d', ''),
-(3, 'Silali Gibson', 'silali@gmail.com', '0733725491', '', 'fc51f44e790e8f04b54f733356b45183', ''),
-(4, 'Humphrey Otieno', 'humphrey@yahoo.com', '0712345678', '804060.jpg', '262d4d3f6cf9f553a1dfd5f902426147', ''),
-(5, 'Manu El', 'el@mail.com', '567576879', '', 'db442f230d3deca58e3f481f3338381b', ''),
-(6, 'Naf Zeu', 'zeu@gmail.com', '0723456789', '509707.png', 'db442f230d3deca58e3f481f3338381b', ''),
-(7, 'Silali Gibson', 'gibson@mail.com', '56778687678886', '', 'db442f230d3deca58e3f481f3338381b', ''),
-(8, 'Dennis Seroney', 'dennisseroney@yahoo.com', '0712103837', '', '29ea5826fae0475ac770806e3337c315', ''),
-(9, 'Sammy Kosgey', 'sammy@gmail.com', '0712121212', '', '6132a0be89e2fe074e19f9dacf487412', ''),
-(10, 'John', 'john@mail.com', '0712103837', '948799.jpg', '59530efe0732fded24139374563b0e83', ''),
-(11, 'Ule msee', 'msee@mail.com', '837895465', '', 'db442f230d3deca58e3f481f3338381b', '');
+INSERT INTO `tbl_farmers` (`ID`, `name`, `email`, `phone`, `photo`, `pass`, `hidden`, `timer`) VALUES
+(1, 'Manu El', 'emashmagak@gmail.com', '0724540039', '205659.jpg', '2b385e6093aa32e2a6da96353658c1ab', '0', '2017-06-16 15:13:13'),
+(2, 'Manu El', 'emashmagak@live.com', '0724540039', '', '52e6faa3e83e3da54a804455d0b8e74d', '', '2017-06-16 15:13:13'),
+(3, 'Silali Gibson', 'silali@gmail.com', '0733725491', '', 'fc51f44e790e8f04b54f733356b45183', '', '2017-06-16 15:13:13'),
+(4, 'Humphrey Otieno', 'humphrey@yahoo.com', '0712345678', '804060.jpg', '262d4d3f6cf9f553a1dfd5f902426147', '', '2017-06-16 15:13:13'),
+(5, 'Manu El', 'el@mail.com', '567576879', '', 'db442f230d3deca58e3f481f3338381b', '', '2017-06-16 15:13:13'),
+(6, 'Naf Zeu', 'zeu@gmail.com', '0723456789', '509707.png', 'db442f230d3deca58e3f481f3338381b', '', '2017-06-16 15:13:13'),
+(7, 'Silali Gibson', 'gibson@mail.com', '56778687678886', '', 'db442f230d3deca58e3f481f3338381b', '', '2017-06-16 15:13:13'),
+(8, 'Dennis Seroney', 'dennisseroney@yahoo.com', '0712103837', '', '29ea5826fae0475ac770806e3337c315', '', '2017-06-16 15:13:13'),
+(9, 'Sammy Kosgey', 'sammy@gmail.com', '0712121212', '', '6132a0be89e2fe074e19f9dacf487412', '', '2017-06-16 15:13:13'),
+(10, 'John', 'john@mail.com', '0712103837', '948799.jpg', '59530efe0732fded24139374563b0e83', '', '2017-06-16 15:13:13'),
+(11, 'Ule msee', 'msee@mail.com', '837895465', '', 'db442f230d3deca58e3f481f3338381b', '', '2017-06-16 15:13:13');
 
 --
 -- Indexes for dumped tables

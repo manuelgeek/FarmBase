@@ -317,7 +317,7 @@ width: 232px;"></ul>
 										</div>
 			            				<div class="panel-footer">
 			    
-				            			<button href="tel:<?php echo $message['phone']; ?>" style="width: 100%;" class="btn btn-sm btn-success __item-cta" type="submit" >Call</button><br>
+				            			<a href="tel:+254-<?php echo $message['phone']; ?>" style="width: 100%;" class="btn btn-sm btn-success __item-cta">Call</a><br>
 				            			<button style="width: 100%;" class="btn btn-sm btn-success __item-cta" type="submit" data-toggle="modal" data-target="#messageForm"  >Message</button>
 
 			            				</div>

@@ -287,7 +287,7 @@ if($admin_home->is_logged_in() ) {
 				            			</div>
 			            			</div>
 			            			<div class="col-md-12" style="padding:2px;">
-				            			<button style="width: 150px; margin: 2px;" class="btn btn-sm btn-success" href="tel:<?php echo $message['phone']; ?>" type="submit">Call</button><br>
+				            			<a style="width: 150px; margin: 2px;" class="btn btn-sm btn-success" href="tel:+254-<?php echo $message['phone']; ?>">Call</a><br>
 				            			<button style="width: 150px; margin: 2px;" class="btn btn-sm btn-success" type="submit" data-toggle="modal" data-target="#messageForm">Message</button>
 			            			</div>
 			            		</div>
